@@ -1,0 +1,643 @@
+@import 'tailwindcss';
+
+@import '@fontsource-variable/fraunces/opsz.css';
+@import '@fontsource-variable/schibsted-grotesk/wght.css';
+
+/* ==========================================================================
+   AURA — design tokens
+   Single source of truth. If a value is not defined here it should not
+   appear in a component.
+   ========================================================================== */
+
+@theme {
+  /* ---- Surfaces -------------------------------------------------------- */
+  --color-canvas: #f7f5f1; /* warm bone — the page */
+  --color-stone: #efebe4; /* soft stone — alternating bands, image beds */
+  --color-stone-deep: #e4ded4; /* deeper stone — wells */
+  --color-surface: #fffdfa; /* cards, drawers, modals */
+
+  /* ---- Product beds ----------------------------------------------------
+     The surface a product is "photographed" on. Deeper than the page so a
+     bone-coloured shoe does not dissolve into its own backdrop. */
+  --color-bed-top: #ebe5d8;
+  --color-bed-mid: #ded7c6;
+  --color-bed-deep: #cdc4ae;
+  --color-on-bed: #4c4840; /* captions laid over a bed */
+  --color-ink: #1c1b18; /* warm charcoal — buttons, display type */
+  --color-ink-deep: #0e0d0b; /* the one dark editorial band */
+  --color-ink-raised: #22201c; /* raised surface inside a dark band */
+  --color-bed-dark-top: #262218; /* lit top of a dark product bed */
+
+  /* ---- Lines ----------------------------------------------------------- */
+  --color-line: #e0dacf;
+  --color-line-strong: #c7bfb1; /* decorative rules */
+  --color-control: #867f73; /* interactive control borders — 3:1 minimum */
+  --color-line-dark: #2e2b26;
+
+  /* ---- Type on light --------------------------------------------------- */
+  --color-primary: #1c1b18;
+  --color-secondary: #55514a;
+  --color-muted: #666258;
+
+  /* ---- Type on dark ---------------------------------------------------- */
+  --color-on-dark: #f4f1eb;
+  --color-on-dark-secondary: #b3ada2;
+  --color-on-dark-muted: #938d83;
+
+  /* ---- Signal — the single accent -------------------------------------- */
+  --color-signal: #c9d64b; /* fills and marks only, never text on light */
+  --color-signal-ink: #545c06; /* the readable cut, for text on light */
+  --color-signal-wash: #eef2cd; /* tint fills */
+
+  /* ---- Status ---------------------------------------------------------- */
+  --color-positive: #3f6b4a;
+  --color-sale: #9a3b22;
+
+  /* ---- Type families --------------------------------------------------- */
+  --font-display: 'Fraunces Variable', 'Iowan Old Style', Georgia, serif;
+  --font-sans: 'Schibsted Grotesk Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* ---- Motion — one curve family, four durations ----------------------- */
+  --ease-exit: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-editorial: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out-soft: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --duration-micro: 160ms;
+  --duration-ui: 280ms;
+  --duration-reveal: 520ms;
+  --duration-image: 700ms;
+
+  /* ---- Layout ---------------------------------------------------------- */
+  --radius-pill: 999px;
+}
+
+:root {
+  /* Film grain, generated once as a data URI so no network request is needed. */
+  --grain-url: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.86' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    border-color: var(--color-line);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-canvas);
+    color: var(--color-primary);
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: var(--color-signal);
+    color: var(--color-ink);
+  }
+
+  /* Focus: one ring, everywhere, visible on both canvases. */
+  :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+    outline: 2px solid var(--color-ink);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  .on-dark :where(a, button, input, select, textarea, [tabindex]):focus-visible {
+    outline-color: var(--color-signal);
+  }
+
+  img,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  /* Numeric UI (prices, sizes, totals) should never jitter. */
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* ==========================================================================
+   Typography scale
+   Display = Fraunces at large optical size. Everything functional = Schibsted.
+   ========================================================================== */
+
+@layer components {
+  .t-display {
+    font-family: var(--font-display);
+    font-variation-settings: 'opsz' 144;
+    font-weight: 300;
+    font-size: clamp(3.25rem, 12vw, 10.5rem);
+    line-height: 0.85;
+    letter-spacing: -0.042em;
+  }
+
+  .t-h1 {
+    font-family: var(--font-display);
+    font-variation-settings: 'opsz' 144;
+    font-weight: 300;
+    font-size: clamp(2.5rem, 6.2vw, 5rem);
+    line-height: 0.95;
+    letter-spacing: -0.035em;
+  }
+
+  .t-h2 {
+    font-family: var(--font-display);
+    font-variation-settings: 'opsz' 120;
+    font-weight: 300;
+    font-size: clamp(1.875rem, 4.4vw, 3.25rem);
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+  }
+
+  .t-h3 {
+    font-family: var(--font-display);
+    font-variation-settings: 'opsz' 72;
+    font-weight: 400;
+    font-size: clamp(1.25rem, 2.2vw, 1.75rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+
+  .t-serif {
+    font-family: var(--font-display);
+    font-variation-settings: 'opsz' 48;
+    font-weight: 400;
+  }
+
+  .t-lede {
+    font-size: clamp(1.0625rem, 1.4vw, 1.25rem);
+    line-height: 1.55;
+    letter-spacing: -0.005em;
+    color: var(--color-secondary);
+  }
+
+  .t-body {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--color-secondary);
+  }
+
+  .t-small {
+    font-size: 0.875rem;
+    line-height: 1.55;
+  }
+
+  /* The label is the connective tissue of the whole system. */
+  .t-label {
+    font-size: 0.6875rem;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .t-nav {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .t-product {
+    font-size: 0.9375rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+
+  .t-price {
+    font-size: 0.9375rem;
+    font-weight: 400;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.01em;
+  }
+
+  /* ---- Wordmark -------------------------------------------------------- */
+  .t-wordmark {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    text-indent: 0.34em; /* optical: cancel the trailing tracking */
+  }
+}
+
+/* ==========================================================================
+   Layout primitives
+   ========================================================================== */
+
+@layer components {
+  .container-aura {
+    width: 100%;
+    max-width: 96rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+
+  @media (min-width: 768px) {
+    .container-aura {
+      padding-inline: 2.5rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .container-aura {
+      padding-inline: 4rem;
+    }
+  }
+
+  .container-prose {
+    width: 100%;
+    max-width: 44rem;
+    margin-inline: auto;
+  }
+
+  .section-y {
+    padding-block: clamp(4.5rem, 9vw, 9rem);
+  }
+
+  .section-y-tight {
+    padding-block: clamp(3rem, 6vw, 5.5rem);
+  }
+
+  .rule {
+    border-top: 1px solid var(--color-line);
+  }
+
+  .on-dark {
+    color: var(--color-on-dark);
+  }
+
+  .on-dark .t-body,
+  .on-dark .t-lede {
+    color: var(--color-on-dark-secondary);
+  }
+}
+
+/* ==========================================================================
+   Controls
+   ========================================================================== */
+
+@layer components {
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.625rem;
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition:
+      background-color var(--duration-micro) var(--ease-exit),
+      color var(--duration-micro) var(--ease-exit),
+      border-color var(--duration-micro) var(--ease-exit),
+      opacity var(--duration-micro) var(--ease-exit);
+  }
+
+  .btn:disabled {
+    opacity: 0.42;
+    cursor: not-allowed;
+  }
+
+  .btn-lg {
+    height: 3.5rem;
+    padding-inline: 2rem;
+  }
+  .btn-md {
+    height: 3rem;
+    padding-inline: 1.5rem;
+  }
+  .btn-sm {
+    height: 2.25rem;
+    padding-inline: 1rem;
+    font-size: 0.6875rem;
+  }
+
+  .btn-solid {
+    background-color: var(--color-ink);
+    color: var(--color-canvas);
+  }
+  .btn-solid:hover:not(:disabled) {
+    background-color: #35322c;
+  }
+
+  .btn-outline {
+    border-color: var(--color-ink);
+    color: var(--color-ink);
+    background-color: transparent;
+  }
+  .btn-outline:hover:not(:disabled) {
+    background-color: var(--color-ink);
+    color: var(--color-canvas);
+  }
+
+  .btn-quiet {
+    border-color: var(--color-control);
+    color: var(--color-primary);
+    background-color: transparent;
+  }
+  .btn-quiet:hover:not(:disabled) {
+    border-color: var(--color-ink);
+  }
+
+  .btn-invert {
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
+  }
+  .btn-invert:hover:not(:disabled) {
+    background-color: var(--color-signal);
+  }
+
+  .btn-invert-outline {
+    border-color: rgb(255 255 255 / 0.32);
+    color: var(--color-on-dark);
+    background-color: transparent;
+  }
+  .btn-invert-outline:hover:not(:disabled) {
+    border-color: var(--color-on-dark);
+  }
+
+  /* ---- Field ----------------------------------------------------------- */
+  .field {
+    width: 100%;
+    height: 3.25rem;
+    padding-inline: 1rem;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-control);
+    color: var(--color-primary);
+    font-size: 0.9375rem;
+    transition:
+      border-color var(--duration-micro) var(--ease-exit),
+      background-color var(--duration-micro) var(--ease-exit);
+  }
+
+  .field::placeholder {
+    color: var(--color-muted);
+  }
+
+  .field:hover {
+    border-color: var(--color-ink);
+  }
+
+  .field[aria-invalid='true'] {
+    border-color: var(--color-sale);
+  }
+
+  /* ---- Selection pills -------------------------------------------------- */
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 2.75rem;
+    min-width: 3.25rem;
+    padding-inline: 0.75rem;
+    border: 1px solid var(--color-control);
+    background-color: transparent;
+    font-size: 0.8125rem;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-primary);
+    cursor: pointer;
+    transition:
+      border-color var(--duration-micro) var(--ease-exit),
+      background-color var(--duration-micro) var(--ease-exit),
+      color var(--duration-micro) var(--ease-exit);
+  }
+
+  .pill:hover:not(:disabled) {
+    border-color: var(--color-ink);
+  }
+
+  .pill[aria-pressed='true'],
+  .pill[data-selected='true'] {
+    background-color: var(--color-ink);
+    border-color: var(--color-ink);
+    color: var(--color-canvas);
+  }
+
+  .pill:disabled {
+    color: var(--color-muted);
+    opacity: 0.6;
+    cursor: not-allowed;
+    background-image: linear-gradient(
+      to top right,
+      transparent calc(50% - 0.5px),
+      var(--color-control) 50%,
+      transparent calc(50% + 0.5px)
+    );
+  }
+
+  /* ---- Chip (filters) --------------------------------------------------- */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    height: 2.25rem;
+    padding-inline: 0.875rem;
+    border: 1px solid var(--color-control);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-secondary);
+    cursor: pointer;
+    transition:
+      border-color var(--duration-micro) var(--ease-exit),
+      color var(--duration-micro) var(--ease-exit),
+      background-color var(--duration-micro) var(--ease-exit);
+  }
+
+  .chip:hover {
+    border-color: var(--color-ink);
+    color: var(--color-primary);
+  }
+
+  .chip[aria-pressed='true'] {
+    background-color: var(--color-ink);
+    border-color: var(--color-ink);
+    color: var(--color-canvas);
+  }
+
+  /* ---- Badge ------------------------------------------------------------ */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    height: 1.375rem;
+    padding-inline: 0.5rem;
+    font-size: 0.625rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .badge-signal {
+    background-color: var(--color-signal);
+    color: var(--color-ink);
+  }
+  .badge-ink {
+    background-color: var(--color-ink);
+    color: var(--color-canvas);
+  }
+  .badge-outline {
+    border: 1px solid var(--color-line-strong);
+    color: var(--color-secondary);
+  }
+
+  /* ---- Link with a drawn underline -------------------------------------- */
+  .link-draw {
+    position: relative;
+    display: inline-block;
+  }
+
+  .link-draw::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -0.2em;
+    height: 1px;
+    background-color: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform var(--duration-ui) var(--ease-exit);
+  }
+
+  .link-draw:hover::after,
+  .link-draw:focus-visible::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  .link-underline::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+  .link-underline:hover::after {
+    transform: scaleX(0);
+    transform-origin: right;
+  }
+}
+
+/* ==========================================================================
+   Image beds + photographic treatment
+   ========================================================================== */
+
+@layer components {
+  /* Every product sits on a stone bed with a soft top-light falloff.
+     This is what stands in for a lighting setup. */
+  .image-bed {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--color-bed-mid);
+    background-image: radial-gradient(
+      125% 95% at 50% 4%,
+      var(--color-bed-top) 0%,
+      var(--color-bed-mid) 44%,
+      var(--color-bed-deep) 100%
+    );
+  }
+
+  .image-bed-deep {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--color-ink-deep);
+    background-image: radial-gradient(
+      112% 88% at 50% 4%,
+      var(--color-bed-dark-top) 0%,
+      #131210 54%,
+      var(--color-ink-deep) 100%
+    );
+  }
+
+  /* Film grain. Low opacity, multiply — reads as paper and film, not noise. */
+  .grain::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.05;
+    mix-blend-mode: multiply;
+    background-image: var(--grain-url);
+    background-size: 180px 180px;
+  }
+
+  .grain-dark::after {
+    mix-blend-mode: overlay;
+    opacity: 0.09;
+  }
+
+  /* Choosing a colourway repaints the product rather than swapping an image. */
+  .shoe-svg * {
+    transition:
+      fill var(--duration-image) var(--ease-exit),
+      stroke var(--duration-image) var(--ease-exit),
+      stop-color var(--duration-image) var(--ease-exit);
+  }
+
+  .hairline-grid {
+    background-image:
+      linear-gradient(to right, var(--color-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--color-line) 1px, transparent 1px);
+    background-size: 25% 25%;
+  }
+}
+
+/* ==========================================================================
+   Utilities
+   ========================================================================== */
+
+@layer utilities {
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .edge-fade-r {
+    mask-image: linear-gradient(to right, #000 82%, transparent 100%);
+  }
+
+  .stretch-target::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+}
+
+/* ==========================================================================
+   Reduced motion — collapse to opacity, keep every state reachable
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
