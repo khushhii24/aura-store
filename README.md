@@ -90,10 +90,17 @@ one folder.
 
 ## Imagery
 
-**Products are photographed.** Six models, nine images, bundled locally as
-WebP in `src/assets/products/` rather than hot-linked. AURA ONE has four
+**Four models are photographed, two are rendered.** Fifteen images, bundled locally as WebP in `src/assets/products/` rather than hot-linked. AURA ONE has four
 angles from one shoot and carries a thumbnail gallery; the rest have one
 frame each.
+
+**FORM and LOW are generated, not photographed.** Both of their photographs
+carried a competitor's trademark — adidas three-stripes on one, the Puma cat
+on the other — and no clean replacement existed. Their imagery is rendered
+from the same parametric geometry as the 3D viewer, by the dev-only
+`render.html` entry, which is excluded from the build because `vite build`
+only takes `index.html` as an input. Regenerate with `npm run dev` and
+`/render.html?slug=aura-form&az=1.05&el=0.42&dist=0.88`.
 
 **The construction section is photographed.** The four layers each carry a
 real macro of a shoe rather than a drawing. Three are crops of the flagship's

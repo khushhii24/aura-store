@@ -52,9 +52,7 @@ dropped for that reason alone.
 | --- | --- | --- |
 | `one-1…one-4.webp` | `photo-1603808033192-082d6919d3e1`, `-1603808033596-5d1fa1629eae`, `-1603808033176-9d134e6f2c74`, `-1603808033587-935942847de4` | AURA ONE |
 | `run.webp` | `photo-1562183241-b937e95585b6` | AURA RUN |
-| `form.webp` | `photo-1625860191460-10a66c7384fb` | AURA FORM |
 | `glide.webp` | `photo-1560769629-975ec94e6a86` | AURA GLIDE |
-| `low.webp` | `photo-1608384177866-0bca0d225435` | AURA LOW |
 | `step.webp` | `photo-1631087606988-a6be38fccaf6` | AURA STEP |
 
 **Every one was checked by eye at full resolution for third-party branding.**
@@ -90,9 +88,7 @@ Every remaining product photograph was traced back to its Unsplash uploader:
 | --- | --- | --- |
 | `one-1…one-4.webp` | Mojtaba Fahiminia (@fahiminia) | No |
 | `run.webp` | Martin Katler (@martinkatler) | No |
-| `form.webp` | Mukesh Naik (@pixelapse) | No |
 | `glide.webp` | Irene Kredenets (@ikredenets) | No |
-| `low.webp` | The DK Photography (@deepain108) | No |
 | `step.webp` | Rauf Alvi (@rauf_alvi2001) | No |
 | `construction/outsole.webp` | Jordan Hou | No |
 
@@ -105,14 +101,22 @@ shooting branded retail product is the other, and it is far more common.
 Re-inspecting each image at high zoom with the tonal range lifted — the step
 that catches white-on-white — found two more:
 
-- **AURA FORM** carries the adidas three-stripes, three stitched parallel
+- **AURA FORM** carried the adidas three-stripes, three stitched parallel
   bands across the lateral side. Tonal white-on-white, structurally the
-  trademark. The product copy sitting above it reads "no logo anywhere you
+  trademark. The product copy sitting above it read "no logo anywhere you
   can see it from across a room".
-- **AURA LOW** carries the Puma leaping cat and wordmark in black on white
+- **AURA LOW** carried the Puma leaping cat and wordmark in black on white
   leather. Faint at card size, unmistakable in the bundled asset.
 
 Neither was found by the uploader check. Both were found by looking properly.
+
+**Both photographs are gone.** Rather than cut two more models, FORM and LOW
+are now rendered from the same parametric geometry that drives the 3D
+viewer, by the dev-only `render.html` entry. No third party's product is
+involved, so there is nothing to inspect. It also removed the constraint
+that had held the catalogue to one photograph per model: generation is free,
+so FORM and LOW carry four angles each, and LOW got the gum outsole its own
+copy had always described and its photograph never showed.
 
 **A check that was missing.** The uploader's name on Unsplash is itself a
 branding signal — brands publish their own product photography there. SHIFT

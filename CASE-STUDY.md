@@ -160,6 +160,28 @@ spring, all in one file. Reduced motion collapses every entrance to opacity,
 turns the pinned construction sequence into a static layout and keeps every
 state reachable.
 
+### When the photography ran out
+
+Auditing every product photograph by its Unsplash uploader found that SHIFT's
+image came from the brand's own account. That check came back clean for
+everything else — and it was the wrong check to rely on. A brand publishing
+its own catalogue shots is one risk; an independent photographer shooting
+branded retail product is the commoner one, and the uploader tells you
+nothing about it.
+
+Re-inspecting every image at high zoom with the tonal range lifted found two
+more: adidas three-stripes stitched across AURA FORM, tonal white-on-white,
+directly beneath copy promising "no logo anywhere you can see it from across
+a room"; and the Puma cat and wordmark on AURA LOW.
+
+That is five of seven photographed models with a trademark problem. The
+approach had failed on its own terms, so two of them stopped being
+photographed. FORM and LOW are rendered from the parametric geometry built
+for the 3D viewer — which meant the 3D work, made for one feature, became
+the answer to a sourcing problem it was never built for. The renders are
+15-22 kB each against 200-500 kB for a photograph, and generation being free
+lifted the one-angle-per-model limit that licensing had imposed.
+
 ### The construction section
 
 "Four layers, one shoe" used to show a generated exploded diagram. It now

@@ -215,9 +215,16 @@ at 14% and not 22%.
 
 ## 8. Product imagery
 
-Products are photographed. Six models, nine images, bundled locally as WebP.
-Only AURA ONE has multiple angles, so the colour control reports the colourway
-rather than offering a choice the imagery cannot honour.
+Four models are photographed and two are rendered. ONE, RUN, GLIDE and STEP
+carry photographs; FORM and LOW carry frames generated from their own
+geometry, because both of their photographs turned out to wear a
+competitor's trademark.
+
+The colour control reports the colourway rather than offering a choice,
+because a photograph cannot be recoloured. The two rendered models could
+honour a real choice — the mesh takes its colours from the colourway data —
+but they are presented the same way as the rest so the control means one
+thing everywhere.
 
 The construction section is photographed too: four macros, one per layer.
 

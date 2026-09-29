@@ -1,4 +1,5 @@
 import {
+  BONE_CLAY,
   BONE_VOLT,
   CHALK_SILVER,
   MOSS_BONE,
@@ -217,9 +218,9 @@ export const products: Product[] = [
     description:
       'LOW borrows its proportions from a 1970s court shoe and nothing else. Underneath the leather is a compressed AURAFOAM wedge, so a silhouette that usually punishes you after two hours does not.',
     story:
-      'The hardest part was resisting the urge to add. LOW has three panels, one line of stitching and an ivory outsole. Everything interesting about it is underneath.',
+      'The hardest part was resisting the urge to add. LOW has three panels, one line of stitching and a gum-toned outsole. Everything interesting about it is underneath.',
     images: imagesFor('aura-low'),
-    colorways: [CHALK_SILVER],
+    colorways: [BONE_CLAY],
     sizes: SIZE_RUN,
     soldOutSizes: [6, 13],
     rating: 4.6,
@@ -233,7 +234,7 @@ export const products: Product[] = [
     materials: [
       'Smooth full-grain leather upper',
       'Compressed AURAFOAM wedge',
-      'Vulcanised natural rubber outsole',
+      'Vulcanised gum rubber outsole',
       'Recycled-textile lining',
     ],
     technology: [
