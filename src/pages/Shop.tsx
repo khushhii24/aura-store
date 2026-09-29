@@ -31,7 +31,7 @@ type Audience = 'men' | 'women' | null
  * Inventing gendered SKUs to make a filter look busy would be dishonest data.
  */
 const LEAD_ORDER: Record<'men' | 'women', string[]> = {
-  men: ['aura-one', 'aura-run', 'aura-trail', 'aura-shift'],
+  men: ['aura-one', 'aura-run', 'aura-glide', 'aura-step'],
   women: ['aura-form', 'aura-one', 'aura-low', 'aura-step'],
 }
 
@@ -39,7 +39,7 @@ const COPY: Record<'all' | 'men' | 'women', { title: string; intro: string }> = 
   all: {
     title: 'The collection',
     intro:
-      'Eight models on one platform. Every pair shares the same midsole, the same last and the same 30-day wear test.',
+      'Six models on one platform. Every pair shares the same midsole, the same last and the same 30-day wear test.',
   },
   men: {
     title: "Men's footwear",

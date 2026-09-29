@@ -1,7 +1,7 @@
 # AURA — premium footwear e-commerce experience
 
 A front-end storefront concept for a fictional performance-lifestyle footwear
-brand. Seven products, a working catalogue with filtering and sorting, a full
+brand. Six products, a working catalogue with filtering and sorting, a full
 product page, search, wishlist, a shopping bag and a prototype checkout —
 all running on mock data and React state, with no backend.
 
@@ -90,7 +90,7 @@ one folder.
 
 ## Imagery
 
-**Products are photographed.** Seven models, ten images, bundled locally as
+**Products are photographed.** Six models, nine images, bundled locally as
 WebP in `src/assets/products/` rather than hot-linked. AURA ONE has four
 angles from one shoot and carries a thumbnail gallery; the rest have one
 frame each.
@@ -123,7 +123,7 @@ late for exactly that — "Saint Laurent Paris" on a tongue, a monogram across
 a heel counter.
 
 Three things took their shape from what licensed unbranded footwear
-photography actually supports, all recorded in `CREDITS.md`: seven models
+photography actually supports, all recorded in `CREDITS.md`: six models
 rather than eight, multiple angles for the flagship only, and one colourway
 per model (the selector reports the colour rather than offering a choice the
 imagery cannot honour).

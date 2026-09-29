@@ -70,7 +70,7 @@ export interface ShoeShape {
   /** A wrapped toe bumper. Trail models only. */
   mudguard?: boolean
   lacing: 'laced' | 'slip'
-  /** Selects the surface texture. Eight models should not all feel identical. */
+  /** Selects the surface texture. No two models should feel identical. */
   material: 'knit' | 'mesh' | 'leather' | 'canvas' | 'ripstop'
   perforated: boolean
   heelTab: boolean

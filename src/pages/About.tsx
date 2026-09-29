@@ -94,7 +94,7 @@ export function About() {
                 still looks like something you would choose.
               </p>
               <p className="t-body">
-                Eight models later, that is still the whole brief. One platform underneath, eight
+                Six models later, that is still the whole brief. One platform underneath, six
                 different answers to what a day looks like. No seasonal churn, no colourways
                 designed to expire.
               </p>
@@ -103,7 +103,7 @@ export function About() {
             <dl className="mt-14 grid gap-8 border-t border-[color:var(--color-line-strong)] pt-10 sm:grid-cols-3">
               {[
                 { term: 'Founded', value: '2023' },
-                { term: 'Models', value: 'Seven' },
+                { term: 'Models', value: 'Six' },
                 { term: 'Wear test', value: '30 days' },
               ].map((stat) => (
                 <div key={stat.term}>

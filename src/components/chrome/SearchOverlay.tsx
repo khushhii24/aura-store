@@ -212,7 +212,7 @@ export function SearchOverlay() {
                     <div className="max-w-md">
                       <h2 className="t-h3">No results for “{query}”.</h2>
                       <p className="t-body mt-3">
-                        Try a model name — ONE, RUN, FORM, SHIFT — or a colour like bone, moss or
+                        Try a model name — ONE, RUN, FORM, STEP — or a colour like bone, moss or
                         clay.
                       </p>
                       <Link to="/shop" onClick={close} className="btn btn-outline btn-md mt-6">

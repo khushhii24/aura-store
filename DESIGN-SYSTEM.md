@@ -215,7 +215,7 @@ at 14% and not 22%.
 
 ## 8. Product imagery
 
-Products are photographed. Seven models, ten images, bundled locally as WebP.
+Products are photographed. Six models, nine images, bundled locally as WebP.
 Only AURA ONE has multiple angles, so the colour control reports the colourway
 rather than offering a choice the imagery cannot honour.
 

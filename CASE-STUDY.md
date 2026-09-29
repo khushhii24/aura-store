@@ -10,7 +10,7 @@
 
 AURA is a fictional performance-lifestyle footwear brand: shoes built for a
 day that does not sort itself neatly into a workout and everything else. This
-is its storefront — an seven-product catalogue with working discovery, a full
+is its storefront — a six-product catalogue with working discovery, a full
 product page, search, a bag and a prototype checkout, designed and built
 front-end first.
 
@@ -95,7 +95,7 @@ the tongue and one with a monogram across the heel counter.
 What survived that filter shaped the catalogue rather than the other way
 round:
 
-- **Seven models, not eight.** There was no eighth unbranded shoe, and an
+- **Six models, not eight.** Two were cut rather than shipped. There was no eighth unbranded shoe, and an
   eighth product with a Nike photo under it is worse than one fewer product.
 - **One shoot has four angles**, so AURA ONE carries the thumbnail gallery
   and the rest collapse to a single frame instead of padding out with the

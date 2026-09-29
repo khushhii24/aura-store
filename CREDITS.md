@@ -53,7 +53,6 @@ dropped for that reason alone.
 | `one-1…one-4.webp` | `photo-1603808033192-082d6919d3e1`, `-1603808033596-5d1fa1629eae`, `-1603808033176-9d134e6f2c74`, `-1603808033587-935942847de4` | AURA ONE |
 | `run.webp` | `photo-1562183241-b937e95585b6` | AURA RUN |
 | `form.webp` | `photo-1625860191460-10a66c7384fb` | AURA FORM |
-| `shift.webp` | `photo-1606846859455-1af0b84947f3` | AURA SHIFT |
 | `glide.webp` | `photo-1560769629-975ec94e6a86` | AURA GLIDE |
 | `low.webp` | `photo-1608384177866-0bca0d225435` | AURA LOW |
 | `step.webp` | `photo-1631087606988-a6be38fccaf6` | AURA STEP |
@@ -71,13 +70,23 @@ tongue, another a monogram across the heel counter.
 is legible in a close crop, which is why the construction section sources its
 outsole image elsewhere.
 
-**AURA SHIFT — unresolved.** A later pass found "mahabis", a real footwear
-brand, embossed on the sole of the near shoe. It is tonal and not legible at
-the size the page renders it, but it is perfectly legible in the bundled
-asset, and it is a competitor's wordmark under a product priced as AURA's.
-It cannot be cropped out without cutting the soles off both shoes. The
-options are to replace the photograph or to drop the model, the way AURA
-TRAIL was dropped; it is recorded here rather than quietly left.
+**AURA SHIFT — cut.** A later pass found "mahabis", a real footwear brand,
+embossed on the sole of the near shoe, and the photograph turned out to come
+from that brand's own Unsplash account. It could not be cropped out without
+cutting the soles off both shoes. Seven replacement candidates were checked
+and every one failed: ornate dress slippers, a Puma with its formstrip and
+"PROFOAM" in frame, an all-black high-top with its own embossed sole mark, a
+Vans Sk8-Hi, a second image from the same mahabis account, formal dress
+shoes, and a CGI render carrying a logo. So SHIFT was dropped, the way AURA
+TRAIL was dropped before it. That is the second model this constraint has
+cost, and it is the honest price of not shipping someone else's product
+under this brand's name.
+
+**A check that was missing.** The uploader's name on Unsplash is itself a
+branding signal — brands publish their own product photography there. SHIFT
+was found by eye, late; it would have been caught immediately by reading who
+uploaded it. That check now belongs in the sourcing process alongside
+inspecting every sole, tongue and heel at full resolution.
 
 **AURA RUN** is a recognisable silhouette — the web-overlay upper is closely
 associated with one manufacturer's model. No wordmark or three-stripe mark is
@@ -89,9 +98,11 @@ Checking caught the obvious marks and missed a tonal one on a white sole; the
 rule that fixed it was to inspect every sole, tongue and heel at full
 resolution rather than scanning the image as a whole.
 
-This is also why the catalogue is seven models rather than eight. There was
-no eighth unbranded shoe available, and an eighth product with a Nike photo
-under it would have been worse than one fewer product. AURA TRAIL was cut.
+This is why the catalogue is six models rather than eight. AURA TRAIL was
+cut because no eighth unbranded shoe was available, and an eighth product
+with a Nike photograph under it would have been worse than one fewer
+product. AURA SHIFT was cut because the photograph under it turned out to be
+a competitor's own.
 
 Only AURA ONE has more than one photograph — four angles from a single
 shoot, which is why it carries the flagship gallery. That is the honest

@@ -6,7 +6,6 @@ import one2 from '@/assets/products/one-2.webp'
 import one3 from '@/assets/products/one-3.webp'
 import one4 from '@/assets/products/one-4.webp'
 import run from '@/assets/products/run.webp'
-import shift from '@/assets/products/shift.webp'
 import step from '@/assets/products/step.webp'
 
 /**
@@ -49,7 +48,6 @@ export const PRODUCT_IMAGES: Record<string, ProductImage[]> = {
   ],
   'aura-run': [img(run, 'Three-quarter', 'AURA RUN in Slate, engineered mesh upper')],
   'aura-form': [img(form, 'Profile', 'AURA FORM in Chalk, lit against a pale studio wall')],
-  'aura-shift': [img(shift, 'Pair', 'A pair of AURA SHIFT in Charcoal')],
   'aura-glide': [img(glide, 'Pair', 'A pair of AURA GLIDE in Bone, on a studio plinth')],
   'aura-low': [img(low, 'Top', 'AURA LOW in Chalk, shot from above on black')],
   'aura-step': [img(step, 'Pair', 'A pair of AURA STEP in Moss, knit slip-on')],

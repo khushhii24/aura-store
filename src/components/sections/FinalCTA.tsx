@@ -27,7 +27,7 @@ export function FinalCTA() {
             Find your everyday movement.
           </h2>
           <p className="t-lede mx-auto mt-6 max-w-md">
-            Seven models, one platform underneath. Start with the one people keep coming back to.
+            Six models, one platform underneath. Start with the one people keep coming back to.
           </p>
           <div className="mt-9 flex flex-wrap justify-center gap-3">
             <Link to="/shop" className="btn btn-solid btn-lg">

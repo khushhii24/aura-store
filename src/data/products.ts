@@ -1,7 +1,6 @@
 import {
   BONE_VOLT,
   CHALK_SILVER,
-  CHARCOAL_STONE,
   MOSS_BONE,
   SAND_CLAY,
   SLATE_ASH,
@@ -164,53 +163,6 @@ export const products: Product[] = [
   },
 
   {
-    id: 'p-shift',
-    slug: 'aura-shift',
-    name: 'SHIFT',
-    tagline: 'Travel and everyday performance',
-    category: 'travel',
-    audience: ['men', 'women'],
-    price: 175,
-    released: '2025-06-30',
-    featured: true,
-    shortDescription: 'Built for long days that start in one time zone and end in another.',
-    description:
-      'SHIFT is the shoe for the day that will not sit still. A collapsible heel lets you wear it down through security and pull it up on the other side. The upper is treated to shed a spilled coffee, and the whole thing packs flat enough to disappear into a carry-on.',
-    story:
-      'We kept seeing the same thing in airports — people wearing running shoes because nothing else survives fourteen hours of walking, then carrying a second pair for everything else. SHIFT is one pair that covers both ends of that day.',
-    images: imagesFor('aura-shift'),
-    colorways: [CHARCOAL_STONE],
-    sizes: SIZE_RUN,
-    soldOutSizes: [6, 12.5, 13],
-    rating: 4.7,
-    reviewCount: 147,
-    specs: [
-      { label: 'Weight', value: '256 g / 9.0 oz (US 9)' },
-      { label: 'Stack height', value: '30 mm heel / 23 mm forefoot' },
-      { label: 'Drop', value: '7 mm' },
-      { label: 'Fit', value: 'True to size, roomy toe box' },
-    ],
-    materials: [
-      'Water-repellent brushed textile upper, PFC-free finish',
-      'Nitrogen-infused EVA midsole',
-      'Collapsible heel counter',
-      'Recycled-polyester lining',
-    ],
-    technology: [
-      {
-        name: 'Fold heel',
-        detail: 'A heel counter engineered to collapse and spring back, thousands of times.',
-      },
-      {
-        name: 'Shed finish',
-        detail: 'A PFC-free treatment that beads rain and airport coffee alike.',
-      },
-      { name: 'Packflat last', detail: 'Compresses to 60% of its height without creasing.' },
-    ],
-    shape: { stack: 0.94, collar: 4, soleStyle: 'wedge', toe: 'round', outsole: 'pods', overlay: 'arc', lacing: 'slip', material: 'canvas', perforated: false, heelTab: true },
-  },
-
-  {
     id: 'p-glide',
     slug: 'aura-glide',
     name: 'GLIDE',
@@ -336,7 +288,7 @@ export const products: Product[] = [
 export const getProduct = (slug: string) => products.find((p) => p.slug === slug)
 
 /** The four models on the home page, in the order the brand leads with. */
-export const FEATURED_SLUGS = ['aura-one', 'aura-run', 'aura-form', 'aura-shift']
+export const FEATURED_SLUGS = ['aura-one', 'aura-run', 'aura-form', 'aura-step']
 
 export const featuredProducts = FEATURED_SLUGS.map(
   (slug) => products.find((p) => p.slug === slug)!,

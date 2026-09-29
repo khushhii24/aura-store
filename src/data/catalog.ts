@@ -23,7 +23,6 @@ export const COLOR_FAMILIES: { value: ColorFamily; label: string; swatch: string
   { value: 'sand', label: 'Sand', swatch: '#d7c7ae' },
   { value: 'moss', label: 'Moss', swatch: '#4c5347' },
   { value: 'slate', label: 'Slate', swatch: '#6e7478' },
-  { value: 'charcoal', label: 'Charcoal', swatch: '#3a3733' },
 ]
 
 export const PRICE_BANDS = [

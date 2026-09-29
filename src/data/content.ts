@@ -101,7 +101,7 @@ export const BRAND_PILLARS = [
   },
   {
     title: 'Fewer, better, longer',
-    copy: 'Seven models. No seasonal churn. Materials chosen to last past the point where most trainers are thrown away.',
+    copy: 'Six models. No seasonal churn. Materials chosen to last past the point where most trainers are thrown away.',
   },
 ]
 
@@ -142,7 +142,7 @@ export const FOOTER_COLUMNS = [
       { label: 'AURA ONE', to: '/product/aura-one' },
       { label: 'AURA RUN', to: '/product/aura-run' },
       { label: 'AURA FORM', to: '/product/aura-form' },
-      { label: 'AURA SHIFT', to: '/product/aura-shift' },
+      { label: 'AURA STEP', to: '/product/aura-step' },
     ],
   },
   {
