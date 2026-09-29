@@ -82,6 +82,38 @@ TRAIL was dropped before it. That is the second model this constraint has
 cost, and it is the honest price of not shipping someone else's product
 under this brand's name.
 
+### Uploader audit
+
+Every remaining product photograph was traced back to its Unsplash uploader:
+
+| File | Uploader | Brand account? |
+| --- | --- | --- |
+| `one-1…one-4.webp` | Mojtaba Fahiminia (@fahiminia) | No |
+| `run.webp` | Martin Katler (@martinkatler) | No |
+| `form.webp` | Mukesh Naik (@pixelapse) | No |
+| `glide.webp` | Irene Kredenets (@ikredenets) | No |
+| `low.webp` | The DK Photography (@deepain108) | No |
+| `step.webp` | Rauf Alvi (@rauf_alvi2001) | No |
+| `construction/outsole.webp` | Jordan Hou | No |
+
+AURA SHIFT's mahabis photograph was the only brand-account upload. On that
+measure the rest of the catalogue is clean.
+
+**The uploader check has a blind spot**, and it is the bigger one. A brand
+publishing its own catalogue shots is one risk; an independent photographer
+shooting branded retail product is the other, and it is far more common.
+Re-inspecting each image at high zoom with the tonal range lifted — the step
+that catches white-on-white — found two more:
+
+- **AURA FORM** carries the adidas three-stripes, three stitched parallel
+  bands across the lateral side. Tonal white-on-white, structurally the
+  trademark. The product copy sitting above it reads "no logo anywhere you
+  can see it from across a room".
+- **AURA LOW** carries the Puma leaping cat and wordmark in black on white
+  leather. Faint at card size, unmistakable in the bundled asset.
+
+Neither was found by the uploader check. Both were found by looking properly.
+
 **A check that was missing.** The uploader's name on Unsplash is itself a
 branding signal — brands publish their own product photography there. SHIFT
 was found by eye, late; it would have been caught immediately by reading who
