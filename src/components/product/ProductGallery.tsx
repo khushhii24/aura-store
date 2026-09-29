@@ -8,7 +8,7 @@ import { DURATION, EASE } from '@/lib/motion'
 
 /** Ordered so the first three thumbnails are unmistakably different from
  *  each other — three pale crops in a row read as the same picture. */
-const VIEWS: ShoeView[] = ['profile', 'top', 'sole', 'heel', 'detail', 'toe']
+const VIEWS: ShoeView[] = ['hero', 'profile', 'top', 'sole', 'heel', 'toe']
 
 interface ProductGalleryProps {
   product: Product

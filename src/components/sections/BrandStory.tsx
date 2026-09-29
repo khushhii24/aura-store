@@ -16,7 +16,7 @@ import { ShoeVisual } from '@/components/visuals/ShoeVisual'
 const COMPOSITION = [
   {
     slug: 'aura-form',
-    view: 'profile',
+    view: 'hero',
     tone: 'stone',
     aspect: 'aspect-[4/5]',
     offset: '',

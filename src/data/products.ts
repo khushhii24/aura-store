@@ -64,7 +64,7 @@ export const products: Product[] = [
         detail: 'Rubber placed only where wear data said it was needed. Less weight, same grip.',
       },
     ],
-    shape: { stack: 1, collar: 0, overlay: 'arc', lacing: 'laced', perforated: true, heelTab: true },
+    shape: { stack: 1, collar: 0, soleStyle: 'wedge', toe: 'round', outsole: 'pods', overlay: 'arc', lacing: 'laced', material: 'knit', perforated: true, heelTab: true },
   },
 
   {
@@ -114,14 +114,7 @@ export const products: Product[] = [
         detail: 'An upper you can see through, so heat leaves as fast as it arrives.',
       },
     ],
-    shape: {
-      stack: 1.14,
-      collar: 6,
-      overlay: 'flash',
-      lacing: 'laced',
-      perforated: true,
-      heelTab: false,
-    },
+    shape: { stack: 1.04, collar: 6, soleStyle: 'rocker', toe: 'tapered', outsole: 'pods', overlay: 'flash', lacing: 'laced', material: 'mesh', perforated: true, heelTab: false },
   },
 
   {
@@ -167,14 +160,7 @@ export const products: Product[] = [
       },
       { name: 'Debossed arc', detail: 'The only branding, pressed into the heel counter.' },
     ],
-    shape: {
-      stack: 0.84,
-      collar: -4,
-      overlay: 'none',
-      lacing: 'laced',
-      perforated: false,
-      heelTab: false,
-    },
+    shape: { stack: 0.92, collar: -4, soleStyle: 'cupsole', toe: 'round', outsole: 'gum', overlay: 'none', lacing: 'laced', material: 'leather', perforated: false, heelTab: false },
   },
 
   {
@@ -220,14 +206,7 @@ export const products: Product[] = [
       },
       { name: 'Packflat last', detail: 'Compresses to 60% of its height without creasing.' },
     ],
-    shape: {
-      stack: 0.94,
-      collar: 4,
-      overlay: 'arc',
-      lacing: 'laced',
-      perforated: false,
-      heelTab: true,
-    },
+    shape: { stack: 0.94, collar: 4, soleStyle: 'wedge', toe: 'round', outsole: 'pods', overlay: 'arc', lacing: 'laced', material: 'ripstop', perforated: false, heelTab: true },
   },
 
   {
@@ -268,14 +247,7 @@ export const products: Product[] = [
       { name: 'Guide plate', detail: 'A carbon-infused sheet that keeps a tall stack from wandering.' },
       { name: 'Heel cradle', detail: 'A moulded cup that locks the foot down at distance pace.' },
     ],
-    shape: {
-      stack: 1.26,
-      collar: 8,
-      overlay: 'flash',
-      lacing: 'laced',
-      perforated: true,
-      heelTab: true,
-    },
+    shape: { stack: 1.18, collar: 8, soleStyle: 'rocker', toe: 'tapered', outsole: 'full', overlay: 'flash', lacing: 'laced', material: 'mesh', perforated: true, heelTab: true },
   },
 
   {
@@ -314,14 +286,7 @@ export const products: Product[] = [
       { name: 'Vulcanised bond', detail: 'Heat-bonded sole, not glued. It stays on.' },
       { name: 'Court last', detail: 'A narrow, flat last with an unbroken toe line.' },
     ],
-    shape: {
-      stack: 0.68,
-      collar: -8,
-      overlay: 'none',
-      lacing: 'laced',
-      perforated: false,
-      heelTab: false,
-    },
+    shape: { stack: 0.82, collar: -8, soleStyle: 'cupsole', toe: 'blunt', outsole: 'gum', overlay: 'none', lacing: 'laced', material: 'canvas', perforated: false, heelTab: false },
   },
 
   {
@@ -361,14 +326,7 @@ export const products: Product[] = [
       { name: 'Rock plate', detail: 'A forefoot shield you only notice when you land on something.' },
       { name: 'Drain-through', detail: 'Perforated footbed and upper — water leaves in under a minute.' },
     ],
-    shape: {
-      stack: 1.08,
-      collar: 10,
-      overlay: 'arc',
-      lacing: 'laced',
-      perforated: false,
-      heelTab: true,
-    },
+    shape: { stack: 1, collar: 10, soleStyle: 'lugged', toe: 'round', outsole: 'lugs', overlay: 'arc', mudguard: true, lacing: 'laced', material: 'ripstop', perforated: false, heelTab: true },
   },
 
   {
@@ -407,14 +365,7 @@ export const products: Product[] = [
       { name: 'Circular knit', detail: 'Knitted in one piece, so there is nothing to come apart.' },
       { name: 'Standing tune', detail: 'Softer under the heel, firmer under the arch. For queues.' },
     ],
-    shape: {
-      stack: 0.8,
-      collar: 2,
-      overlay: 'none',
-      lacing: 'slip',
-      perforated: true,
-      heelTab: true,
-    },
+    shape: { stack: 0.88, collar: 2, soleStyle: 'slab', toe: 'round', outsole: 'pods', overlay: 'none', lacing: 'slip', material: 'knit', perforated: true, heelTab: true },
   },
 ]
 

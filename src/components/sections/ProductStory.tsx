@@ -13,7 +13,7 @@ import type { ShoeView } from '@/components/visuals/shoeGeometry'
  */
 const CROPS: { view: ShoeView; flip?: boolean; tone: 'stone' | 'dark' }[] = [
   { view: 'heel', tone: 'stone' },
-  { view: 'profile', tone: 'dark' },
+  { view: 'hero', tone: 'dark' },
   { view: 'top', tone: 'stone' },
   { view: 'toe', flip: true, tone: 'stone' },
   { view: 'sole', tone: 'dark' },

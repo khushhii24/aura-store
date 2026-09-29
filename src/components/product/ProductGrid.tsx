@@ -15,8 +15,8 @@ import type { ShoeView } from '@/components/visuals/shoeGeometry'
  * abstract band of colour rather than a product, which costs more than the
  * variety buys.
  */
-const CATALOG_VIEWS: ShoeView[] = ['profile', 'profile', 'top', 'profile', 'profile', 'profile']
-const CATALOG_HOVER: ShoeView[] = ['top', 'sole', 'profile', 'detail', 'heel', 'top']
+const CATALOG_VIEWS: ShoeView[] = ['hero', 'hero', 'top', 'hero', 'hero', 'hero']
+const CATALOG_HOVER: ShoeView[] = ['top', 'sole', 'hero', 'profile', 'heel', 'top']
 
 export function CatalogGrid({ products: list }: { products: Product[] }) {
   return (
@@ -55,7 +55,7 @@ export function EditorialGrid({ products: list }: { products: Product[] }) {
     {
       span: 'lg:col-span-7',
       layout: 'wide',
-      view: 'profile',
+      view: 'hero',
       hoverView: 'detail',
       tone: 'stone',
     },
@@ -63,14 +63,14 @@ export function EditorialGrid({ products: list }: { products: Product[] }) {
       span: 'lg:col-span-5',
       layout: 'portrait',
       view: 'top',
-      hoverView: 'profile',
+      hoverView: 'hero',
       tone: 'dark',
       offset: 'lg:mt-20',
     },
     {
       span: 'lg:col-span-5',
       layout: 'portrait',
-      view: 'profile',
+      view: 'hero',
       hoverView: 'sole',
       tone: 'stone',
       flip: true,
@@ -78,7 +78,7 @@ export function EditorialGrid({ products: list }: { products: Product[] }) {
     {
       span: 'lg:col-span-7',
       layout: 'wide',
-      view: 'profile',
+      view: 'hero',
       hoverView: 'top',
       tone: 'stone',
       offset: 'lg:mt-20',

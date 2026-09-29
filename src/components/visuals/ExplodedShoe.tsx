@@ -34,11 +34,8 @@ const SEPARATION = 62
 export function ExplodedShoe({ parts, shape, progress, active }: ExplodedShoeProps) {
   const uid = useId().replace(/:/g, '')
   const id = (n: string) => `${n}-${uid}`
-  const sole = useMemo(() => makeSole(shape.stack), [shape.stack])
-  const upper = useMemo(
-    () => makeUpper(shape.collar, sole.lastingReversed),
-    [shape.collar, sole.lastingReversed],
-  )
+  const sole = useMemo(() => makeSole(shape), [shape])
+  const upper = useMemo(() => makeUpper(shape, sole.lastingReversed), [shape, sole.lastingReversed])
   const edge = useMemo(
     () => ({
       upper: contour(parts.upper, 0.3),

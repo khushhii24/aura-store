@@ -46,14 +46,30 @@ export type ColorFamily =
 export type Category = 'running' | 'training' | 'lifestyle' | 'travel'
 export type Audience = 'men' | 'women'
 
-/** Drives the illustration: silhouette variations between models. */
+/**
+ * Drives the illustration.
+ *
+ * These are the design of the shoe, not decoration on top of it. Sole
+ * architecture, toe shape and outsole construction change the silhouette, so
+ * a court shoe and a max-stack road runner do not share an outline.
+ */
 export interface ShoeShape {
-  /** Vertical scale applied to the sole unit. 1 = the AURA ONE stack. */
+  /** Multiplies the sole architecture's own thickness profile. */
   stack: number
   /** Collar height offset in SVG units; positive sits higher on the ankle. */
   collar: number
+  /** Sole architecture. Carries thickness, toe spring and how far it flares. */
+  soleStyle: 'wedge' | 'rocker' | 'cupsole' | 'slab' | 'lugged'
+  /** Toe profile. */
+  toe: 'round' | 'tapered' | 'blunt'
+  /** Outsole construction: rubber pods, full coverage, a gum wrap, or lugs. */
+  outsole: 'pods' | 'full' | 'gum' | 'lugs'
   overlay: 'arc' | 'flash' | 'none'
+  /** A wrapped toe bumper. Trail models only. */
+  mudguard?: boolean
   lacing: 'laced' | 'slip'
+  /** Selects the surface texture. Eight models should not all feel identical. */
+  material: 'knit' | 'mesh' | 'leather' | 'canvas' | 'ripstop'
   perforated: boolean
   heelTab: boolean
 }

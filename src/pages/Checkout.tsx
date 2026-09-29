@@ -191,8 +191,8 @@ export function Checkout() {
               key={product.id}
               product={product}
               layout="square"
-              view={i === 1 ? 'top' : 'profile'}
-              hoverView={i === 1 ? 'profile' : 'detail'}
+              view={i === 1 ? 'top' : 'hero'}
+              hoverView={i === 1 ? 'hero' : 'profile'}
               flip={i === 2}
               tone={i === 1 ? 'dark' : 'stone'}
               priority

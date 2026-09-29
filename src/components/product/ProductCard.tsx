@@ -39,7 +39,7 @@ const ASPECT: Record<CardLayout, string> = {
 export function ProductCard({
   product,
   layout = 'square',
-  view = 'profile',
+  view = 'hero',
   hoverView = 'top',
   flip = false,
   tone = 'stone',
