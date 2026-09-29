@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "AURA \u2014 premium performance-lifestyle footwear. Frontend-only e-commerce concept build.",
+  "description": "AURA — premium performance-lifestyle footwear. Frontend-only e-commerce concept build.",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",

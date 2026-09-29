@@ -72,9 +72,6 @@ export function ProductDetail() {
             <div className="-mx-5 md:-mx-10 lg:mx-0">
               <ProductGallery product={product} />
             </div>
-            <p className="t-label mt-3 text-[color:var(--color-muted)]">
-              Material — {colorway.name}
-            </p>
           </div>
 
           <div className="lg:col-span-5">

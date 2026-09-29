@@ -100,7 +100,6 @@ export function ProductGallery({ product }: { product: Product }) {
             transition={{ duration: reduced ? DURATION.micro : DURATION.image, ease: EASE }}
           />
         </AnimatePresence>
-
       </div>
 
       {/* Under the frame, not on it. Photographs have mid-tones, and a
