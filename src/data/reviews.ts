@@ -122,7 +122,7 @@ export const reviews: Review[] = [
     rating: 5,
     date: '2025-08-18',
     title: 'Simple in a good way',
-    body: 'Leather court shoe that I can stand in all day. It wipes clean, which matters when you have talked yourself into a white shoe.',
+    body: 'Canvas court shoe that I can stand in all day. The gum sole marks a little on pale floors, but that is every gum sole.',
     verified: true,
     fit: 'large',
   },

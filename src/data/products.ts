@@ -219,7 +219,7 @@ export const products: Product[] = [
     released: '2025-04-15',
     shortDescription: 'A flat, clean court shape with a modern sole unit underneath.',
     description:
-      'LOW borrows its proportions from a 1970s court shoe and nothing else. Underneath the leather is a compressed AURAFOAM wedge, so a silhouette that usually punishes you after two hours does not.',
+      'LOW borrows its proportions from a 1970s court shoe and nothing else. Underneath the canvas is a compressed AURAFOAM wedge, so a silhouette that usually punishes you after two hours does not.',
     story:
       'The hardest part was resisting the urge to add. LOW has three panels, one line of stitching and a gum-toned outsole. Everything interesting about it is underneath.',
     images: imagesFor('aura-low'),
@@ -235,7 +235,7 @@ export const products: Product[] = [
       { label: 'Fit', value: 'Runs slightly large — consider a half size down' },
     ],
     materials: [
-      'Smooth full-grain leather upper',
+      'Organic cotton canvas upper',
       'Compressed AURAFOAM wedge',
       'Vulcanised gum rubber outsole',
       'Recycled-textile lining',
@@ -245,7 +245,7 @@ export const products: Product[] = [
       { name: 'Vulcanised bond', detail: 'Heat-bonded sole, not glued. It stays on.' },
       { name: 'Court last', detail: 'A narrow, flat last with an unbroken toe line.' },
     ],
-    shape: { stack: 0.82, collar: -8, soleStyle: 'cupsole', toe: 'blunt', outsole: 'gum', overlay: 'none', lacing: 'laced', material: 'leather', perforated: false, heelTab: false },
+    shape: { stack: 0.82, collar: -8, soleStyle: 'cupsole', toe: 'blunt', outsole: 'gum', overlay: 'none', lacing: 'laced', material: 'canvas', perforated: false, heelTab: false },
   },
 
   {

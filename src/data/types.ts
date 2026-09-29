@@ -60,7 +60,9 @@ export interface ShoeShape {
   stack: number
   /** Collar height offset in SVG units; positive sits higher on the ankle. */
   collar: number
-  /** Sole architecture. Carries thickness, toe spring and how far it flares. */
+  /** Sole *profile* — thickness, toe spring and flare. Not a construction:
+   *  'cupsole' is the flat court shape, which FORM builds as a stitched
+   *  cupsole and LOW builds as a vulcanised bond. */
   soleStyle: 'wedge' | 'rocker' | 'cupsole' | 'slab' | 'lugged'
   /** Toe profile. */
   toe: 'round' | 'tapered' | 'blunt'

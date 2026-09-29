@@ -11,11 +11,12 @@ import type { Product } from "@/data/types";
  * the main bundle — they load when someone asks for the 3D view and not
  * before.
  *
- * There is no downloaded model here. The mesh is generated from the same
- * parametric geometry that draws the construction diagram, which is why every
- * product has its own: AURA LOW is a flat vulcanised cupsole, GLIDE is a
- * rockered slab, and neither carries anyone else's trademark. The licensed
- * models that were tried instead all did.
+ * There is no downloaded model here. The mesh is generated from the shoe's
+ * own parametric geometry, which is why every product has its own: AURA LOW
+ * is a flat court sole, GLIDE is a rockered slab, and neither carries anyone
+ * else's trademark. The licensed models that were tried instead all did, and
+ * so did the photographs behind FORM and LOW — which is why those two are
+ * rendered from this same geometry rather than shot.
  */
 const Viewer = lazy(() =>
   import("@/components/visuals/ShoeViewer3D").then((m) => ({
