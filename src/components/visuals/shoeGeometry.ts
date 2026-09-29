@@ -328,33 +328,35 @@ const TOP_POINTS: Pt[] = [
 
 export const TOP_OUTLINE = curveThrough(TOP_POINTS, true)
 
-export const TOP_COLLAR = { cx: 272, cy: 240, rx: 62, ry: 46, rotate: -2 }
+/**
+ * The opening is an elongated oval running heel-to-throat, not a circle at
+ * the back. The circular version read as a hole punched in an insole.
+ */
+export const TOP_COLLAR = { cx: 296, cy: 240, rx: 104, ry: 50, rotate: -2 }
 
 export const TOP_TONGUE =
-  'M352 208 C420 196 466 206 486 226 C496 236 496 246 486 256 C466 276 420 286 352 274 C340 256 340 226 352 208 Z'
+  'M372 214 C440 204 500 210 540 224 C550 230 550 250 540 256 C500 270 440 276 372 266 C362 250 362 230 372 214 Z'
 
-export const TOP_LACE_BARS = [0, 1, 2].flatMap((i) => {
-  const x = 388 + i * 46
-  return [`M${x} 210 L${x + 46} 270`, `M${x} 270 L${x + 46} 210`]
+/** Laces cross over the tongue between two eyelet rows set into the quarters. */
+export const TOP_LACE_BARS = [0, 1, 2, 3].flatMap((i) => {
+  const x = 392 + i * 42
+  return [`M${x} 198 L${x + 42} 282`, `M${x} 282 L${x + 42} 198`]
 })
 
-export const TOP_EYELETS: Pt[] = [
-  [384, 210],
-  [430, 206],
-  [476, 208],
-  [522, 214],
-  [384, 270],
-  [430, 274],
-  [476, 272],
-  [522, 266],
-]
+export const TOP_EYELETS: Pt[] = [0, 1, 2, 3, 4].flatMap((i) => [
+  [392 + i * 42, 198] as Pt,
+  [392 + i * 42, 282] as Pt,
+])
 
 export const TOP_SEAMS = [
-  'M186 198 C216 180 252 178 280 192',
-  'M332 176 C338 218 338 266 332 304',
-  'M812 152 C846 188 850 294 812 330',
-  'M624 240 C702 234 772 234 840 240',
+  'M196 204 C232 184 288 182 324 198',
+  'M806 150 C842 186 846 296 806 332',
+  'M568 240 C650 234 726 234 792 240',
 ]
+
+/** A lateral overlay following the outer edge of the toe box. */
+export const TOP_ACCENT = 'M624 166 C686 154 752 152 806 164'
+
 
 export const SOLE_HEEL_POD =
   'M182 202 C226 182 302 184 336 206 C352 216 352 266 336 276 C302 298 226 300 182 280 C166 268 166 214 182 202 Z'

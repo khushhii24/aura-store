@@ -18,6 +18,7 @@ import {
   SOLE_SHANK,
   TOE_SEAM,
   TONGUE,
+  TOP_ACCENT,
   TOP_COLLAR,
   TOP_EYELETS,
   TOP_LACE_BARS,
@@ -339,21 +340,21 @@ function TopView({
       <path d={TOP_OUTLINE} fill={`url(#${id('upper')})`} stroke={edge.upper} strokeWidth="1.6" />
 
       <g clipPath={`url(#${id('planClip')})`}>
+        {/* The break between the top plane and the sidewalls. Without it the
+            plan view reads as a flat footprint rather than a shoe. */}
+        <g transform="translate(525 240) scale(0.93) translate(-525 -240)">
+          <path
+            d={TOP_OUTLINE}
+            fill="none"
+            stroke={parts.upperShade}
+            strokeWidth="2.4"
+            opacity="0.75"
+          />
+        </g>
+
         {TOP_SEAMS.map((d, i) => (
           <path key={i} d={d} fill="none" stroke={parts.upperShade} strokeWidth="2.6" opacity="0.9" />
         ))}
-
-        {shape.perforated &&
-          PERFORATIONS.map(([cx], i) => (
-            <circle
-              key={i}
-              cx={640 + ((i * 37) % 210)}
-              cy={186 + Math.floor((i * 37) / 210) * 34 + (cx % 7)}
-              r="3"
-              fill={parts.upperShade}
-              opacity="0.75"
-            />
-          ))}
 
         {/* The opening, with the lining visible inside it. */}
         <ellipse
@@ -366,21 +367,21 @@ function TopView({
           strokeWidth="1.5"
           transform={collarTransform}
         />
+        {/* Darker inside the opening, so it reads as depth rather than a disc. */}
         <ellipse
           cx={TOP_COLLAR.cx}
           cy={TOP_COLLAR.cy}
-          rx={TOP_COLLAR.rx - 10}
-          ry={TOP_COLLAR.ry - 10}
-          fill={parts.upperShade}
-          opacity="0.5"
+          rx={TOP_COLLAR.rx - 11}
+          ry={TOP_COLLAR.ry - 11}
+          fill={darken(parts.collar, 0.2)}
           transform={collarTransform}
         />
 
         <path
           d={TOP_TONGUE}
-          fill={parts.overlay}
+          fill={darken(parts.overlay, 0.15)}
           stroke={edge.tongue}
-          strokeWidth="1.4"
+          strokeWidth="1.6"
         />
 
         {shape.lacing === 'laced' && (
@@ -390,20 +391,20 @@ function TopView({
                 key={i}
                 d={d}
                 stroke={parts.laces}
-                strokeWidth="8"
+                strokeWidth="6.5"
                 strokeLinecap="round"
                 fill="none"
               />
             ))}
             {TOP_EYELETS.map(([cx, cy], i) => (
-              <circle key={i} cx={cx} cy={cy} r="3.2" fill={parts.eyelet} />
+              <circle key={i} cx={cx} cy={cy} r="3" fill={parts.eyelet} />
             ))}
           </>
         )}
 
         {shape.overlay !== 'none' && (
           <path
-            d="M646 162 C706 152 766 154 818 170"
+            d={TOP_ACCENT}
             fill="none"
             stroke={parts.accent}
             strokeWidth="7"

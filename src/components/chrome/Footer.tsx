@@ -19,7 +19,7 @@ function Newsletter() {
         setEmail('')
       }}
     >
-      <h3 className="t-h3">Move with us.</h3>
+      <h2 className="t-h3">Move with us.</h2>
       <p className="t-body mt-2.5 text-[color:var(--color-on-dark-secondary)]">
         New models, restocks and the occasional long read. Roughly monthly.
       </p>
@@ -73,9 +73,9 @@ export function Footer({ onOpenSizeGuide }: { onOpenSizeGuide: () => void }) {
           <div className="grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-4 lg:gap-x-14">
             {FOOTER_COLUMNS.map((column) => (
               <nav key={column.heading} aria-label={column.heading}>
-                <h3 className="t-label text-[color:var(--color-on-dark-muted)]">
+                <h2 className="t-label text-[color:var(--color-on-dark-muted)]">
                   {column.heading}
-                </h3>
+                </h2>
                 <ul className="mt-4 space-y-2.5">
                   {column.links.map((link) =>
                     link.to === '#size-guide' ? (

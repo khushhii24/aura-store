@@ -4,6 +4,8 @@ import { Check, Info, Lock } from 'lucide-react'
 import { cn } from '@/lib/cn'
 import { money } from '@/lib/format'
 import { ShoeVisual } from '@/components/visuals/ShoeVisual'
+import { ProductCard } from '@/components/product/ProductCard'
+import { featuredProducts } from '@/data/products'
 import { Eyebrow } from '@/components/primitives/Bits'
 import { STANDARD_SHIPPING, useShop } from '@/store/shop'
 
@@ -172,7 +174,7 @@ export function Checkout() {
 
   if (lines.length === 0) {
     return (
-      <section className="container-aura py-20 md:py-28">
+      <section className="container-aura py-16 md:py-24">
         <div className="max-w-md">
           <Eyebrow>Checkout</Eyebrow>
           <h1 className="t-h1 mt-6">Your bag is empty.</h1>
@@ -180,6 +182,22 @@ export function Checkout() {
           <Link to="/shop" className="btn btn-solid btn-lg mt-8">
             Shop the collection
           </Link>
+        </div>
+
+        <h2 className="t-label mt-16 text-[color:var(--color-muted)]">Most people start here</h2>
+        <div className="mt-8 grid gap-x-5 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-8">
+          {featuredProducts.slice(0, 3).map((product, i) => (
+            <ProductCard
+              key={product.id}
+              product={product}
+              layout="square"
+              view={i === 1 ? 'top' : 'profile'}
+              hoverView={i === 1 ? 'profile' : 'detail'}
+              flip={i === 2}
+              tone={i === 1 ? 'dark' : 'stone'}
+              priority
+            />
+          ))}
         </div>
       </section>
     )
