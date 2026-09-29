@@ -3,6 +3,7 @@ import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { cn } from '@/lib/cn'
 import type { Product } from '@/data/types'
 import { DURATION, EASE } from '@/lib/motion'
+import { Product3D } from './Product3D'
 
 /**
  * The product gallery.
@@ -13,11 +14,15 @@ import { DURATION, EASE } from '@/lib/motion'
  */
 export function ProductGallery({ product }: { product: Product }) {
   const [index, setIndex] = useState(0)
+  const [show3d, setShow3d] = useState(false)
   const reduced = useReducedMotion()
   const scrollerRef = useRef<HTMLDivElement>(null)
   const images = product.images
 
-  useEffect(() => setIndex(0), [product.slug])
+  useEffect(() => {
+    setIndex(0)
+    setShow3d(false)
+  }, [product.slug])
 
   if (images.length === 0) return null
   const current = images[Math.min(index, images.length - 1)]
@@ -77,6 +82,12 @@ export function ProductGallery({ product }: { product: Product }) {
       )}
 
       <div className="min-w-0 flex-1">
+      {show3d ? (
+        <div className="hidden lg:block">
+          <Product3D product={product} />
+        </div>
+      ) : (
+        <>
       <div
         id="gallery-frame"
         role={many ? 'tabpanel' : undefined}
@@ -115,6 +126,17 @@ export function ProductGallery({ product }: { product: Product }) {
           </>
         )}
       </p>
+        </>
+      )}
+
+      <button
+        type="button"
+        onClick={() => setShow3d((v) => !v)}
+        aria-pressed={show3d}
+        className="t-label link-draw mt-3 hidden text-[color:var(--color-muted)] hover:text-[color:var(--color-primary)] lg:block"
+      >
+        {show3d ? 'Back to photographs' : 'View in 3D'}
+      </button>
       </div>
 
       {/* ------------------------------------------------------------ mobile */}

@@ -154,11 +154,15 @@ const TOE_SHAPES: Record<ShoeShape['toe'], Pt[]> = {
 /** The lift applied to the toe of the last, so the upper follows the sole. */
 const toeLift = (style: ShoeShape['soleStyle']) => TOE_SPRING[style]
 
-function lastingFor(shape: ShoeShape): Pt[] {
+export function lastingFor(shape: ShoeShape): Pt[] {
   const lift = toeLift(shape.soleStyle)
   const weight = [0, 0, 0, 0, 0, 0, 0, 0.12, 0.38, 0.72, 1]
   return BASE_LASTING.map(([x, y], i) => [x, y - lift * weight[i]])
 }
+
+export const thicknessFor = (shape: ShoeShape) => THICKNESS[shape.soleStyle]
+export const bulgeFor = (shape: ShoeShape) => BULGE[shape.soleStyle]
+export const outsoleFromFor = (shape: ShoeShape) => OUTSOLE_FROM[shape.outsole]
 
 /* ==========================================================================
    Sole

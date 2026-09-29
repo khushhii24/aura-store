@@ -32,10 +32,14 @@ npm run dev        # http://localhost:5173
 ## Stack
 
 React 19 · TypeScript (strict) · Vite 8 · Tailwind v4 · Motion v13 ·
-React Router 7 · lucide-react
+React Router 7 · lucide-react · three
 
 No UI kit, no component library, no CSS framework beyond Tailwind's engine.
 Every control in `src/components/primitives` is written for this project.
+
+`three` is the one dependency added for a single feature, the 3D product view.
+It is code-split behind the "View in 3D" toggle, so the 139 kB gzipped engine
+never touches the main bundle (101 kB gzipped) unless someone asks for it.
 
 ---
 
@@ -95,6 +99,17 @@ frame each.
 grain macros on the materials page, street scenes in the brand section. See
 `src/assets/photography/` and `CREDITS.md`.
 
+**The 3D view is generated, not downloaded.** Every product can be turned in
+3D from the PDP. The mesh is lofted at runtime from the same parametric
+geometry that draws the construction diagram — the lasting line, the
+per-architecture thickness profile, the toe shape and a last-width profile —
+so each model gets its own solid: ONE is a wedge, LOW a flat vulcanised
+cupsole with a blunt toe, GLIDE a rockered slab on a thicker stack. This is
+also why it is generated rather than licensed: every downloadable sneaker
+model that was tried carried someone else's trademark, including one with
+three stripes moulded into the heel counter. See `src/components/visuals/
+shoeMesh.ts`.
+
 Every photograph was checked by eye at full resolution for third-party
 branding, because the stock alt text cannot be trusted: one image labelled
 "a pair of white shoes" is a pair of Air Force 1s. Two candidates were cut
@@ -148,7 +163,15 @@ is nothing to type real details into.
   is measured separately against the image's own brightest pixels, which is
   how the construction band's backdrop ended up capped at 14% opacity.
 - `prefers-reduced-motion` removes all travel, the pinned scroll sequence and
-  smooth scrolling while keeping every state reachable.
+  smooth scrolling while keeping every state reachable. The 3D view holds
+  still under it — verified by comparing rendered frames 2.5s apart, not by
+  reading the code.
+- The 3D canvas is `role="img"` with a descriptive label and is **not** in the
+  tab order. It was `role="application"` with `tabIndex={0}`, which promises a
+  screen reader that keystrokes will be handled when nothing handles them;
+  rotation is driven by a real button beside the view instead.
+- Wheel-zoom is off, so scrolling past the 3D view scrolls the page rather
+  than zooming the model.
 - Verified at 390 / 768 / 1024 / 1280 / 1440 with no horizontal overflow.
 
 ---

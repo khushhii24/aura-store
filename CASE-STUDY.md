@@ -160,6 +160,46 @@ spring, all in one file. Reduced motion collapses every entrance to opacity,
 turns the pinned construction sequence into a static layout and keeps every
 state reachable.
 
+### Generating the 3D product view
+
+The PDP turns each shoe in 3D. There is no downloaded model: the mesh is
+lofted at runtime from the same numbers that draw the construction diagram,
+so every product gets a solid matching its own sole architecture. That
+decision was forced — a licensed glTF sneaker was integrated first and cut
+when three stripes turned up moulded into its heel counter at full
+resolution.
+
+Four bugs in that loft are worth recording, because each one had an obvious
+wrong answer:
+
+1. **The canoe.** The drawing already had a width profile, so the mesh used
+   it. Wrong profile: it is a silhouette *offset* for the three-quarter view,
+   near zero at heel and toe because that is where the far outline converges
+   on the near one. As an absolute half-width it tapers both ends to a point.
+   Replaced with an actual last-width profile.
+2. **The knife edge.** Doming the section above the lasting line collapses
+   the top to 11% width. A toe box is broad and rounds over only at the very
+   end, so the section became a superellipse.
+3. **The bowtie.** Capping the loft with a triangle fan to the centroid puts
+   one shared point in the middle of a ring that runs the whole length of the
+   shoe, which rendered as a crease straight down the middle. Sewing each
+   point to its mirror closes it as a flat ribbon.
+4. **Inside out.** The band winding produced face normals pointing inward, so
+   the shoe rendered as a see-through shell. Found by working the cross
+   product rather than flipping it and looking: on the lateral side
+   `(b-a) x (c-a)` has to come out `+z`.
+
+The collar opening needed a fifth answer. A dark disc laid on the surface
+cannot work, because the loft's top surface is always drawn over it. Instead
+the cross-section climbs to a rim and then turns inward and *down*, so the
+loft closes on a sunken footbed and the opening is genuinely cut into the
+solid. Upper and lining share one mesh, separated by vertex colour.
+
+Geometry was verified numerically, not by eye — a probe loads the builder
+outside the browser and reports well depth, opening width and cap heights per
+product, which is how "the opening exists but the camera is too low to see
+it" was told apart from "the opening is not being cut".
+
 Accessibility was built in rather than audited on: landmarks and heading
 order, a skip link, dialogs that trap focus and restore it to their trigger,
 real radio and checkbox semantics on selection controls, measured contrast,

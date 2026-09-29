@@ -69,3 +69,13 @@ Both are bundled via [Fontsource](https://fontsource.org) and self-hosted.
 ## Icons
 
 - **Lucide** — ISC License
+
+## 3D
+
+- **three.js** — MIT License
+
+No 3D model is downloaded, bundled or licensed. The shoe mesh is generated at
+runtime from this project's own parametric geometry. That was not the first
+approach: a Khronos-hosted glTF sneaker was integrated and then removed, along
+with the `@google/model-viewer` dependency and a 7.8 MB asset, because at full
+resolution it carried three stripes moulded into the heel counter.

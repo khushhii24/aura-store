@@ -215,9 +215,14 @@ at 14% and not 22%.
 
 ## 8. Product imagery
 
-There are no photographs. `src/components/visuals/shoeGeometry.ts` generates
-every shoe from one lasting line and a thickness curve, normalised against
-real lateral proportions:
+Products are photographed. Seven models, ten images, bundled locally as WebP.
+Only AURA ONE has multiple angles, so the colour control reports the colourway
+rather than offering a choice the imagery cannot honour.
+
+The generated geometry in `src/components/visuals/shoeGeometry.ts` did the
+product rendering first and now does two narrower jobs: the construction and
+exploded diagrams, and the 3D view. It builds every shoe from one lasting line
+and a thickness curve, normalised against real lateral proportions:
 
 ```
 collar top      0.355 L above ground
@@ -225,9 +230,21 @@ sole at heel    0.120 L     sole at forefoot  0.085 L
 toe box         0.100 L     throat            0.235 L
 ```
 
-Four numbers separate the eight models: `stack`, `collar`, `overlay` and
-`lacing`. Six views are genuine geometry or genuine crops — lateral, top,
-outsole, heel, midfoot, toe — not one picture shown six times.
+Four numbers separate the models: `stack`, `collar`, `overlay` and `lacing`.
+
+### The 3D view
+
+`shoeMesh.ts` lofts a solid from those same numbers, so the 3D model of each
+product matches that product rather than being one shoe recoloured. Bands of
+the loft become the outsole, midsole and upper; the collar opening is cut into
+the section rather than laid on the surface, and the lining rides in vertex
+colour so the upper stays a single mesh.
+
+Two constants are viewing decisions rather than anatomy, and are marked as
+such in the source: how deep the footbed sits, and the camera's elevation.
+Taken to their literal values the opening disappears behind the near rim at
+any sane product angle, and the opening is the cue that separates a shoe from
+a clog.
 
 Every part colour comes from the selected colourway, so choosing a swatch
 repaints the product rather than swapping an image. Contour lines are derived
