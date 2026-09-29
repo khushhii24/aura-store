@@ -2,6 +2,8 @@
 
 [![verify](https://github.com/khushhii24/aura-store/actions/workflows/ci.yml/badge.svg)](https://github.com/khushhii24/aura-store/actions/workflows/ci.yml)
 
+**Live:** https://khushhii24.github.io/aura-store/
+
 A front-end storefront concept for a fictional performance-lifestyle footwear
 brand. Six products, a working catalogue with filtering and sorting, a full
 product page, search, wishlist, a shopping bag and a prototype checkout —
@@ -194,8 +196,19 @@ is nothing to type real details into.
 
 ## Deploy
 
-Static SPA. Build with `npm run build`, serve `dist/`.
+Static SPA — build with `npm run build`, serve `dist/`. Live on GitHub Pages
+at https://khushhii24.github.io/aura-store/, deployed by the `deploy` job in
+`.github/workflows/ci.yml`. It runs only on a push to `main`, only after
+`verify` passes, and ships the artifact that passed rather than rebuilding,
+so what goes live is what was checked.
 
-`vercel.json` rewrites all paths to `index.html` so deep links such as
-`/product/aura-one` resolve on refresh. Any static host works with the
-equivalent rewrite.
+Two things a client-side router needs from a static host, both handled:
+
+- **A base path.** Pages serves a project site from `/aura-store/`, so the
+  build is based there while dev stays at `/`. The router takes its basename
+  from `import.meta.env.BASE_URL`, so neither is hardcoded. Deploying
+  somewhere that serves from the root? Build with `BASE_PATH=/`.
+- **A fallback for deep links.** Pages has no rewrite rule; it serves
+  `404.html` for anything not on disk. The build writes a copy of the shell
+  there, so `/shop` and `/product/aura-one` survive a direct hit or a
+  refresh. `vercel.json` does the same job with a proper rewrite for Vercel.

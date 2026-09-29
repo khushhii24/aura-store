@@ -84,8 +84,11 @@ function Layout() {
 }
 
 export function App() {
+  /* Pages serves this from /aura-store/, dev serves it from /. Taking the
+     basename from BASE_URL means neither is hardcoded and links stay correct
+     in both. React Router wants it without the trailing slash. */
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL.replace(/\/$/, '')}>
       <ShopProvider>
         <ScrollToTop />
         <Routes>

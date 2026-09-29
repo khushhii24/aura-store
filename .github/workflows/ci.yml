@@ -58,3 +58,35 @@ jobs:
             echo "::error::main bundle is $((size / 1024)) kB, over the 400 kB budget — has three.js leaked out of its chunk?"
             exit 1
           fi
+
+      # Pages has no SPA rewrite: it serves 404.html for any path not on disk.
+      # Without this copy, /shop and /product/:slug would 404 on a direct hit
+      # or a refresh, while working fine via in-app navigation — the kind of
+      # break that only shows up after deploy.
+      - name: SPA fallback present
+        run: test -f dist/404.html
+
+      - name: Upload Pages artifact
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  # Deploys the artifact that just passed, rather than rebuilding, so what
+  # ships is exactly what was verified.
+  deploy:
+    needs: verify
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
