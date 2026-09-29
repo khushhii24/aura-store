@@ -32,9 +32,10 @@ structural, not decorative.
 bag that survives a refresh. A reviewer who clicks anything should find
 something real underneath.
 
-**It could not rely on photography.** A concept brand has no product photos,
-and stock sneaker imagery would have made eight models look like eight
-different companies.
+**It could not rely on product photography.** A concept brand has no product
+shots of its own, and every licensable studio photograph of a sneaker is
+somebody else's branded product. Photography had to earn its place somewhere
+other than the product shot.
 
 ---
 
