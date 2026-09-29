@@ -211,4 +211,11 @@ Two things a client-side router needs from a static host, both handled:
 - **A fallback for deep links.** Pages has no rewrite rule; it serves
   `404.html` for anything not on disk. The build writes a copy of the shell
   there, so `/shop` and `/product/aura-one` survive a direct hit or a
-  refresh. `vercel.json` does the same job with a proper rewrite for Vercel.
+  refresh — but they are answered with HTTP 404 and the app in the body. It
+  renders correctly; a crawler sees 404 on every route but `/`.
+
+`vercel.json` is the fix for that, and needs no setup beyond importing the
+repo: it rewrites every unmatched path to `index.html` with a real 200, and
+sets `BASE_PATH=/` at build time so the bundle is based at the root rather
+than under `/aura-store/`. Vercel serves static files before applying
+rewrites, so hashed assets are unaffected.
