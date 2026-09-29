@@ -2,7 +2,7 @@
 
 [![verify](https://github.com/khushhii24/aura-store/actions/workflows/ci.yml/badge.svg)](https://github.com/khushhii24/aura-store/actions/workflows/ci.yml)
 
-**Live:** https://khushhii24.github.io/aura-store/
+**Live:** https://aura-store-lake.vercel.app
 
 A front-end storefront concept for a fictional performance-lifestyle footwear
 brand. Six products, a working catalogue with filtering and sorting, a full
@@ -196,26 +196,27 @@ is nothing to type real details into.
 
 ## Deploy
 
-Static SPA — build with `npm run build`, serve `dist/`. Live on GitHub Pages
-at https://khushhii24.github.io/aura-store/, deployed by the `deploy` job in
-`.github/workflows/ci.yml`. It runs only on a push to `main`, only after
-`verify` passes, and ships the artifact that passed rather than rebuilding,
-so what goes live is what was checked.
+Static SPA — build with `npm run build`, serve `dist/`.
 
-Two things a client-side router needs from a static host, both handled:
+**Live on Vercel: https://aura-store-lake.vercel.app.** `vercel.json` is the
+whole configuration and needs nothing set in the dashboard: it rewrites every
+unmatched path to `index.html`, and sets `BASE_PATH=/` at build time so the
+bundle is based at the root. Vercel matches static files before applying
+rewrites, so hashed assets are untouched.
 
-- **A base path.** Pages serves a project site from `/aura-store/`, so the
-  build is based there while dev stays at `/`. The router takes its basename
-  from `import.meta.env.BASE_URL`, so neither is hardcoded. Deploying
-  somewhere that serves from the root? Build with `BASE_PATH=/`.
-- **A fallback for deep links.** Pages has no rewrite rule; it serves
-  `404.html` for anything not on disk. The build writes a copy of the shell
-  there, so `/shop` and `/product/aura-one` survive a direct hit or a
-  refresh — but they are answered with HTTP 404 and the app in the body. It
-  renders correctly; a crawler sees 404 on every route but `/`.
+Two things a client-side router needs from a static host:
 
-`vercel.json` is the fix for that, and needs no setup beyond importing the
-repo: it rewrites every unmatched path to `index.html` with a real 200, and
-sets `BASE_PATH=/` at build time so the bundle is based at the root rather
-than under `/aura-store/`. Vercel serves static files before applying
-rewrites, so hashed assets are unaffected.
+- **A base path.** The router takes its basename from
+  `import.meta.env.BASE_URL` rather than hardcoding one, so the same build
+  works at the root or under a subpath. `BASE_PATH` sets it; the default is
+  `/aura-store/` for GitHub Pages, and `vercel.json` overrides it to `/`.
+- **A fallback for deep links**, so `/shop` and `/product/aura-one` survive a
+  direct hit or a refresh instead of only working via in-app navigation.
+
+A second deployment runs on GitHub Pages from the `deploy` job in
+`.github/workflows/ci.yml` — only on a push to `main`, only after `verify`
+passes, and it ships the artifact that passed rather than rebuilding. It is
+kept as a working example of the harder case: Pages has no rewrite rule, so
+the build writes `404.html` as a copy of the shell. That renders correctly
+but answers deep links with HTTP 404 and the app in the body, which is why
+Vercel is the primary.
