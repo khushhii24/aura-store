@@ -1,5 +1,12 @@
 import { cn } from '@/lib/cn'
-import type { Photo as PhotoData } from '@/data/photography'
+/** Structural: takes anything with a src, alt and intrinsic size — the
+ *  material photography and the product photography both satisfy it. */
+interface PhotoData {
+  src: string
+  alt: string
+  width: number
+  height: number
+}
 
 interface PhotoProps {
   photo: PhotoData

@@ -10,7 +10,7 @@
 
 AURA is a fictional performance-lifestyle footwear brand: shoes built for a
 day that does not sort itself neatly into a workout and everything else. This
-is its storefront — an eight-product catalogue with working discovery, a full
+is its storefront — an seven-product catalogue with working discovery, a full
 product page, search, a bag and a prototype checkout, designed and built
 front-end first.
 

@@ -1,10 +1,9 @@
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { price } from '@/lib/format'
 import { flagship } from '@/data/products'
 import { Reveal } from '@/components/primitives/Reveal'
 import { Eyebrow, RatingLine, Swatch } from '@/components/primitives/Bits'
-import { ShoeVisual } from '@/components/visuals/ShoeVisual'
+import { Photo } from '@/components/visuals/Photo'
 
 /**
  * The flagship, laid out as an editorial spread rather than a product card.
@@ -14,8 +13,8 @@ import { ShoeVisual } from '@/components/visuals/ShoeVisual'
  * cannot do without loading five more images.
  */
 export function FeaturedProduct() {
-  const [index, setIndex] = useState(0)
-  const colorway = flagship.colorways[index]
+  const colorway = flagship.colorways[0]
+  const hero = flagship.images[0]
 
   return (
     <section className="section-y" aria-labelledby="featured-heading">
@@ -23,22 +22,13 @@ export function FeaturedProduct() {
         <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-14">
           {/* ------------------------------------------------------ visual */}
           <Reveal className="lg:col-span-7" y={32}>
-            <div className="image-bed grain relative aspect-[5/4] overflow-hidden md:aspect-[16/11]">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <ShoeVisual
-                  parts={colorway.parts}
-                  shape={flagship.shape}
-                  label={`AURA ${flagship.name} in ${colorway.name}`}
-                />
-              </div>
-
-              <p className="t-label absolute top-5 left-5 text-[color:var(--color-on-bed)]">
-                Figure 01
-              </p>
-              <p className="t-label absolute right-5 bottom-5 text-[color:var(--color-on-bed)]">
-                {colorway.name}
-              </p>
+            <div className="relative aspect-[5/4] overflow-hidden md:aspect-[16/11]">
+              {hero && <Photo photo={hero} className="absolute inset-0" />}
             </div>
+            <p className="t-label mt-3 flex justify-between text-[color:var(--color-muted)]">
+              <span>Figure 01</span>
+              <span>{colorway.name}</span>
+            </p>
           </Reveal>
 
           {/* ------------------------------------------------------- copy */}
@@ -66,25 +56,11 @@ export function FeaturedProduct() {
                 </div>
               </dl>
 
-              <div className="mt-7">
-                <p className="t-label text-[color:var(--color-muted)]">
-                  {flagship.colorways.length} colourways
+              <div className="mt-7 flex items-center gap-3">
+                <Swatch colors={colorway.swatch} size={22} />
+                <p className="t-small text-[color:var(--color-muted)]">
+                  Shown in {colorway.name}
                 </p>
-                <div className="mt-3 flex flex-wrap gap-2" role="radiogroup" aria-label="Colourway">
-                  {flagship.colorways.map((c, i) => (
-                    <button
-                      key={c.id}
-                      type="button"
-                      role="radio"
-                      aria-checked={i === index}
-                      aria-label={c.name}
-                      onClick={() => setIndex(i)}
-                      className="flex h-11 w-11 items-center justify-center"
-                    >
-                      <Swatch colors={c.swatch} selected={i === index} size={26} />
-                    </button>
-                  ))}
-                </div>
               </div>
 
               <div className="mt-9 flex flex-wrap items-center gap-5">

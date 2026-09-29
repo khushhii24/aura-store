@@ -6,7 +6,8 @@ import { reviewsFor } from '@/data/reviews'
 import { ProductGallery } from '@/components/product/ProductGallery'
 import { ProductInfo } from '@/components/product/ProductInfo'
 import { ProductCard } from '@/components/product/ProductCard'
-import { ShoeVisual } from '@/components/visuals/ShoeVisual'
+import { Photo } from '@/components/visuals/Photo'
+import { PHOTOS } from '@/data/photography'
 import { Reveal } from '@/components/primitives/Reveal'
 import { Eyebrow, Stars } from '@/components/primitives/Bits'
 import { useShop } from '@/store/shop'
@@ -69,15 +70,17 @@ export function ProductDetail() {
           <div className="lg:col-span-7 xl:col-span-7">
             {/* Full-bleed gallery on mobile, inset on desktop. */}
             <div className="-mx-5 md:-mx-10 lg:mx-0">
-              <ProductGallery product={product} colorway={colorway} />
+              <ProductGallery product={product} />
             </div>
+            <p className="t-label mt-3 text-[color:var(--color-muted)]">
+              Material — {colorway.name}
+            </p>
           </div>
 
           <div className="lg:col-span-5">
             <ProductInfo
               product={product}
               colorway={colorway}
-              onColorwayChange={setColorwayId}
               onOpenSizeGuide={openSizeGuide}
             />
           </div>
@@ -105,18 +108,9 @@ export function ProductDetail() {
           </Reveal>
 
           <Reveal className="lg:col-span-7" delay={0.06}>
-            <div className="image-bed-deep grain grain-dark relative aspect-[4/3] overflow-hidden">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <ShoeVisual
-                  parts={colorway.parts}
-                  shape={product.shape}
-                  view="detail"
-                  label={`Midfoot detail of AURA ${product.name}`}
-                />
-              </div>
-              <p className="t-label absolute bottom-5 left-5 text-[color:var(--color-on-dark-muted)]">
-                Midfoot — {colorway.name}
-              </p>
+            <div className="relative aspect-[4/3] overflow-hidden">
+              <Photo photo={PHOTOS.knitCharcoal} className="absolute inset-0" alt="" />
+
             </div>
           </Reveal>
         </div>
@@ -174,9 +168,6 @@ export function ProductDetail() {
                 <ProductCard
                   product={item}
                   layout="square"
-                  view={i === 1 ? 'top' : 'hero'}
-                  hoverView={i === 1 ? 'hero' : 'profile'}
-                  flip={i === 2}
                   priority
                 />
               </Reveal>

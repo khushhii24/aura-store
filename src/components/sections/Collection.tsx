@@ -18,7 +18,7 @@ export function Collection() {
               </h2>
             </div>
             <Link to="/shop" className="group t-nav flex items-center gap-3 pb-2">
-              <span className="link-draw">View all eight</span>
+              <span className="link-draw">View all seven</span>
               <ArrowRight
                 size={15}
                 strokeWidth={1.5}

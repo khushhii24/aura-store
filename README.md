@@ -1,7 +1,7 @@
 # AURA — premium footwear e-commerce experience
 
 A front-end storefront concept for a fictional performance-lifestyle footwear
-brand. Eight products, a working catalogue with filtering and sorting, a full
+brand. Seven products, a working catalogue with filtering and sorting, a full
 product page, search, wishlist, a shopping bag and a prototype checkout —
 all running on mock data and React state, with no backend.
 

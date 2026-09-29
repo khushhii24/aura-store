@@ -1,47 +1,40 @@
 import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { cn } from '@/lib/cn'
-import type { Colorway, Product } from '@/data/types'
-import { ShoeVisual } from '@/components/visuals/ShoeVisual'
-import { VIEW_LABEL, type ShoeView } from '@/components/visuals/shoeGeometry'
+import type { Product } from '@/data/types'
 import { DURATION, EASE } from '@/lib/motion'
 
-/** Ordered so the first three thumbnails are unmistakably different from
- *  each other — three pale crops in a row read as the same picture. */
-const VIEWS: ShoeView[] = ['hero', 'profile', 'top', 'sole', 'heel', 'toe']
-
-interface ProductGalleryProps {
-  product: Product
-  colorway: Colorway
-}
-
 /**
- * Six genuine angles of the same shoe, not one image shown six times.
- * Thumbnails drive the main frame; the main frame crossfades rather than
- * cutting, which is the difference between a gallery and a slideshow.
+ * The product gallery.
+ *
+ * AURA ONE has four angles from one shoot and gets thumbnails; the rest have
+ * a single photograph, so the gallery collapses to one frame rather than
+ * padding itself out with the same picture four times.
  */
-export function ProductGallery({ product, colorway }: ProductGalleryProps) {
+export function ProductGallery({ product }: { product: Product }) {
   const [index, setIndex] = useState(0)
   const reduced = useReducedMotion()
   const scrollerRef = useRef<HTMLDivElement>(null)
+  const images = product.images
 
-  /** A new colourway always returns to the lateral shot. */
-  useEffect(() => setIndex(0), [colorway.id])
+  useEffect(() => setIndex(0), [product.slug])
 
-  const view = VIEWS[index]
+  if (images.length === 0) return null
+  const current = images[Math.min(index, images.length - 1)]
+  const many = images.length > 1
 
   const onKeyDown = (event: React.KeyboardEvent) => {
+    if (!many) return
     if (event.key === 'ArrowRight') {
       event.preventDefault()
-      setIndex((i) => (i + 1) % VIEWS.length)
+      setIndex((i) => (i + 1) % images.length)
     }
     if (event.key === 'ArrowLeft') {
       event.preventDefault()
-      setIndex((i) => (i - 1 + VIEWS.length) % VIEWS.length)
+      setIndex((i) => (i - 1 + images.length) % images.length)
     }
   }
 
-  /** Mobile: the strip is the gallery. Keep it in sync when a dot is used. */
   const scrollToIndex = (i: number) => {
     const node = scrollerRef.current
     if (!node) return
@@ -50,73 +43,82 @@ export function ProductGallery({ product, colorway }: ProductGalleryProps) {
 
   return (
     <div className="lg:flex lg:gap-5">
-      {/* ------------------------------------------------ desktop thumbnails */}
-      <div
-        className="hidden shrink-0 flex-col gap-2.5 lg:flex"
-        role="tablist"
-        aria-label={`AURA ${product.name} images`}
-        aria-orientation="vertical"
-      >
-        {VIEWS.map((v, i) => (
-          <button
-            key={v}
-            type="button"
-            role="tab"
-            aria-selected={i === index}
-            aria-controls="gallery-frame"
-            onClick={() => setIndex(i)}
-            className={cn(
-              'image-bed relative h-[4.75rem] w-[4.75rem] overflow-hidden transition-all duration-[var(--duration-micro)]',
-              i === index
-                ? 'ring-1 ring-[color:var(--color-ink)]'
-                : 'opacity-70 hover:opacity-100',
-            )}
-          >
-            <span className="absolute inset-0 flex items-center justify-center">
-              <ShoeVisual parts={colorway.parts} shape={product.shape} view={v} label={null} />
-            </span>
-            <span className="sr-only">{VIEW_LABEL[v]} view</span>
-          </button>
-        ))}
-      </div>
+      {many && (
+        <div
+          className="hidden shrink-0 flex-col gap-2.5 lg:flex"
+          role="tablist"
+          aria-label={`AURA ${product.name} images`}
+          aria-orientation="vertical"
+        >
+          {images.map((image, i) => (
+            <button
+              key={image.src}
+              type="button"
+              role="tab"
+              aria-selected={i === index}
+              aria-controls="gallery-frame"
+              onClick={() => setIndex(i)}
+              className={cn(
+                'relative h-[4.75rem] w-[4.75rem] overflow-hidden bg-[color:var(--color-bed-mid)] transition-all duration-[var(--duration-micro)]',
+                i === index ? 'ring-1 ring-[color:var(--color-ink)]' : 'opacity-70 hover:opacity-100',
+              )}
+            >
+              <img
+                src={image.src}
+                alt=""
+                loading="lazy"
+                decoding="async"
+                className="photo-grade absolute inset-0 h-full w-full object-cover"
+              />
+              <span className="sr-only">{image.label}</span>
+            </button>
+          ))}
+        </div>
+      )}
 
-      {/* ------------------------------------------------------ main frame */}
+      <div className="min-w-0 flex-1">
       <div
         id="gallery-frame"
-        role="tabpanel"
-        tabIndex={0}
+        role={many ? 'tabpanel' : undefined}
+        tabIndex={many ? 0 : undefined}
         onKeyDown={onKeyDown}
-        aria-label={`${VIEW_LABEL[view]} view of AURA ${product.name} in ${colorway.name}`}
-        className="image-bed grain relative hidden aspect-[4/3] w-full lg:block"
+        aria-label={many ? current.alt : undefined}
+        className="relative hidden aspect-[4/3] w-full overflow-hidden bg-[color:var(--color-bed-mid)] lg:block"
       >
         <AnimatePresence mode="popLayout" initial={false}>
-          <motion.div
-            key={view}
-            className="absolute inset-0 flex items-center justify-center"
+          <motion.img
+            key={current.src}
+            src={current.src}
+            alt={current.alt}
+            width={current.width}
+            height={current.height}
+            decoding="async"
+            className="photo-grade absolute inset-0 h-full w-full object-cover"
             initial={{ opacity: 0, scale: reduced ? 1 : 1.015 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: reduced ? DURATION.micro : DURATION.image, ease: EASE }}
-          >
-            <ShoeVisual
-              parts={colorway.parts}
-              shape={product.shape}
-              view={view}
-              label={`AURA ${product.name} in ${colorway.name}, ${VIEW_LABEL[view].toLowerCase()} view`}
-            />
-          </motion.div>
+          />
         </AnimatePresence>
 
-        <p className="t-label absolute bottom-5 left-5 text-[color:var(--color-on-bed)]">
-          {VIEW_LABEL[view]}
-          <span className="mx-2 text-[color:var(--color-line-strong)]">/</span>
-          <span className="tabular">
-            {String(index + 1).padStart(2, '0')} — {String(VIEWS.length).padStart(2, '0')}
-          </span>
-        </p>
       </div>
 
-      {/* ---------------------------------------------------------- mobile */}
+      {/* Under the frame, not on it. Photographs have mid-tones, and a
+          difference blend over a mid-tone gives no contrast at all. */}
+      <p className="t-label mt-4 hidden text-[color:var(--color-muted)] lg:block">
+        {current.label}
+        {many && (
+          <>
+            <span className="mx-2 text-[color:var(--color-line-strong)]">/</span>
+            <span className="tabular">
+              {String(index + 1).padStart(2, '0')} — {String(images.length).padStart(2, '0')}
+            </span>
+          </>
+        )}
+      </p>
+      </div>
+
+      {/* ------------------------------------------------------------ mobile */}
       <div className="lg:hidden">
         <div
           ref={scrollerRef}
@@ -127,43 +129,46 @@ export function ProductGallery({ product, colorway }: ProductGalleryProps) {
             if (next !== index) setIndex(next)
           }}
         >
-          {VIEWS.map((v) => (
+          {images.map((image) => (
             <div
-              key={v}
-              className="image-bed grain relative aspect-[4/3] w-full shrink-0 snap-center"
+              key={image.src}
+              className="relative aspect-[4/3] w-full shrink-0 snap-center overflow-hidden bg-[color:var(--color-bed-mid)]"
             >
-              <span className="absolute inset-0 flex items-center justify-center">
-                <ShoeVisual
-                  parts={colorway.parts}
-                  shape={product.shape}
-                  view={v}
-                  label={`AURA ${product.name} in ${colorway.name}, ${VIEW_LABEL[v].toLowerCase()} view`}
-                />
-              </span>
+              <img
+                src={image.src}
+                alt={image.alt}
+                width={image.width}
+                height={image.height}
+                loading="lazy"
+                decoding="async"
+                className="photo-grade absolute inset-0 h-full w-full object-cover"
+              />
             </div>
           ))}
         </div>
 
         <div className="mt-4 flex items-center justify-between px-5">
-          <p className="t-label text-[color:var(--color-muted)]">{VIEW_LABEL[view]}</p>
-          <div className="flex gap-1.5" role="tablist" aria-label="Gallery position">
-            {VIEWS.map((v, i) => (
-              <button
-                key={v}
-                type="button"
-                role="tab"
-                aria-selected={i === index}
-                aria-label={`Show ${VIEW_LABEL[v].toLowerCase()} view`}
-                onClick={() => scrollToIndex(i)}
-                className={cn(
-                  'h-1.5 transition-all duration-[var(--duration-ui)]',
-                  i === index
-                    ? 'w-6 bg-[color:var(--color-ink)]'
-                    : 'w-1.5 bg-[color:var(--color-line-strong)]',
-                )}
-              />
-            ))}
-          </div>
+          <p className="t-label text-[color:var(--color-muted)]">{current.label}</p>
+          {many && (
+            <div className="flex gap-1.5" role="tablist" aria-label="Gallery position">
+              {images.map((image, i) => (
+                <button
+                  key={image.src}
+                  type="button"
+                  role="tab"
+                  aria-selected={i === index}
+                  aria-label={`Show ${image.label.toLowerCase()}`}
+                  onClick={() => scrollToIndex(i)}
+                  className={cn(
+                    'h-1.5 transition-all duration-[var(--duration-ui)]',
+                    i === index
+                      ? 'w-6 bg-[color:var(--color-ink)]'
+                      : 'w-1.5 bg-[color:var(--color-line-strong)]',
+                  )}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </div>

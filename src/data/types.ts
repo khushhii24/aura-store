@@ -1,3 +1,5 @@
+import type { ProductImage } from './productImages'
+
 /**
  * Mock data contracts.
  *
@@ -99,6 +101,8 @@ export interface Product {
   description: string
   /** Editorial paragraph used on the product page. */
   story: string
+  /** Photography, in gallery order. See data/productImages.ts. */
+  images: ProductImage[]
   colorways: Colorway[]
   /** US sizes this model is made in. */
   sizes: number[]

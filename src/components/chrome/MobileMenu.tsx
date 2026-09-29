@@ -7,7 +7,6 @@ import { NAV_LINKS, SOCIAL_LINKS } from '@/data/content'
 import { products } from '@/data/products'
 import { useEscapeKey, useFocusTrap, useScrollLock } from '@/lib/hooks'
 import { DURATION, EASE } from '@/lib/motion'
-import { ShoeVisual } from '@/components/visuals/ShoeVisual'
 import { Wordmark } from '@/components/visuals/Wordmark'
 import { useShop } from '@/store/shop'
 
@@ -94,14 +93,16 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
                 {range.map((product) => (
                   <li key={product.id} className="w-[11rem] shrink-0">
                     <Link to={`/product/${product.slug}`} onClick={onClose} className="block">
-                      <span className="image-bed grain relative block aspect-square overflow-hidden">
-                        <span className="absolute inset-0 flex items-center justify-center">
-                          <ShoeVisual
-                            parts={product.colorways[0].parts}
-                            shape={product.shape}
-                            label={null}
+                      <span className="relative block aspect-square overflow-hidden bg-[color:var(--color-bed-mid)]">
+                        {product.images[0] && (
+                          <img
+                            src={product.images[0].src}
+                            alt=""
+                            loading="lazy"
+                            decoding="async"
+                            className="photo-grade absolute inset-0 h-full w-full object-cover"
                           />
-                        </span>
+                        )}
                       </span>
                       <span className="mt-2.5 flex items-baseline justify-between">
                         <span className="t-product">AURA {product.name}</span>

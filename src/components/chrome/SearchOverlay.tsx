@@ -10,7 +10,6 @@ import { SUGGESTED_SEARCHES } from '@/data/content'
 import { products } from '@/data/products'
 import { useEscapeKey, useFocusTrap, useScrollLock } from '@/lib/hooks'
 import { DURATION, EASE } from '@/lib/motion'
-import { ShoeVisual } from '@/components/visuals/ShoeVisual'
 import { useShop } from '@/store/shop'
 
 function ResultRow({
@@ -35,17 +34,19 @@ function ResultRow({
       >
         <span
           className={cn(
-            'image-bed relative block shrink-0 overflow-hidden',
+            'relative block shrink-0 overflow-hidden bg-[color:var(--color-bed-mid)]',
             compact ? 'h-12 w-16' : 'h-16 w-20',
           )}
         >
-          <span className="absolute inset-0 flex items-center justify-center">
-            <ShoeVisual
-              parts={product.colorways[0].parts}
-              shape={product.shape}
-              label={null}
+          {product.images[0] && (
+            <img
+              src={product.images[0].src}
+              alt=""
+              loading="lazy"
+              decoding="async"
+              className="photo-grade absolute inset-0 h-full w-full object-cover"
             />
-          </span>
+          )}
         </span>
         <span className="min-w-0 flex-1">
           <span className="t-product block">AURA {product.name}</span>

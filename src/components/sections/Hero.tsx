@@ -4,7 +4,7 @@ import { ArrowDown } from 'lucide-react'
 import { price } from '@/lib/format'
 import { flagship } from '@/data/products'
 import { MaskLine } from '@/components/primitives/Reveal'
-import { ShoeVisual } from '@/components/visuals/ShoeVisual'
+import { Photo } from '@/components/visuals/Photo'
 import { DURATION, EASE } from '@/lib/motion'
 
 /**
@@ -19,6 +19,7 @@ import { DURATION, EASE } from '@/lib/motion'
 export function Hero() {
   const reduced = useReducedMotion()
   const colorway = flagship.colorways[0]
+  const hero = flagship.images[0]
 
   return (
     <section className="image-bed grain relative flex flex-col overflow-hidden lg:min-h-[calc(100svh-6.5rem)] lg:justify-center">
@@ -59,12 +60,12 @@ export function Hero() {
       {/* One instance, two compositions: in flow on a phone, pinned on desktop. */}
       <motion.div
         aria-hidden="true"
-        className="pointer-events-none relative -mb-[5%] w-[150%] max-w-none -translate-x-[16%] md:w-[112%] md:-translate-x-[6%] lg:absolute lg:top-1/2 lg:right-[-8%] lg:left-auto lg:mb-0 lg:w-[72%] lg:translate-x-0 lg:-translate-y-1/2"
+        className="pointer-events-none relative aspect-[4/3] w-full md:aspect-[16/9] lg:absolute lg:inset-y-0 lg:right-0 lg:aspect-auto lg:w-[52%]"
         initial={reduced ? { opacity: 0 } : { opacity: 0, x: 30, scale: 1.02 }}
         animate={{ opacity: 1, x: 0, scale: 1 }}
         transition={{ duration: reduced ? DURATION.ui : 1.1, ease: EASE, delay: 0.16 }}
       >
-        <ShoeVisual parts={colorway.parts} shape={flagship.shape} label={null} />
+        {hero && <Photo photo={hero} alt="" priority className="h-full w-full" />}
       </motion.div>
 
       <motion.div

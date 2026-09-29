@@ -14,14 +14,12 @@ import { useShop } from '@/store/shop'
 interface ProductInfoProps {
   product: Product
   colorway: Colorway
-  onColorwayChange: (id: string) => void
   onOpenSizeGuide: () => void
 }
 
 export function ProductInfo({
   product,
   colorway,
-  onColorwayChange,
   onOpenSizeGuide,
 }: ProductInfoProps) {
   const { addToBag } = useShop()
@@ -80,27 +78,16 @@ export function ProductInfo({
         </a>
       </div>
 
-      {/* ------------------------------------------------------- colourway */}
-      <div className="mt-10">
-        <div className="flex items-baseline justify-between">
-          <h2 className="t-label text-[color:var(--color-muted)]">Colour</h2>
-          <p className="t-small">{colorway.name}</p>
-        </div>
-        <div className="mt-4 flex flex-wrap gap-3" role="radiogroup" aria-label="Colour">
-          {product.colorways.map((c) => (
-            <button
-              key={c.id}
-              type="button"
-              role="radio"
-              aria-checked={c.id === colorway.id}
-              aria-label={c.name}
-              onClick={() => onColorwayChange(c.id)}
-              className="flex h-11 w-11 items-center justify-center"
-            >
-              <Swatch colors={c.swatch} selected={c.id === colorway.id} size={26} />
-            </button>
-          ))}
-        </div>
+      {/* Photography means one shot per colourway, and the pool of licensed
+          unbranded footwear photography supports exactly one per model. The
+          swatch reports the colour rather than offering a choice it cannot
+          honour. */}
+      <div className="mt-10 flex items-center gap-3">
+        <Swatch colors={colorway.swatch} size={22} />
+        <p className="t-small">
+          <span className="t-label mr-2 text-[color:var(--color-muted)]">Colour</span>
+          {colorway.name}
+        </p>
       </div>
 
       {/* ------------------------------------------------------------ size */}

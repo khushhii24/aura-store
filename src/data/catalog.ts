@@ -15,15 +15,15 @@ export const CATEGORIES: { value: Category; label: string }[] = [
   { value: 'travel', label: 'Travel' },
 ]
 
+/** Trimmed to the families the catalogue actually carries — an empty
+ *  filter option is a dead end. */
 export const COLOR_FAMILIES: { value: ColorFamily; label: string; swatch: string }[] = [
   { value: 'bone', label: 'Bone', swatch: '#ece7dd' },
   { value: 'chalk', label: 'Chalk', swatch: '#f2f0ec' },
   { value: 'sand', label: 'Sand', swatch: '#d7c7ae' },
-  { value: 'clay', label: 'Clay', swatch: '#9c5a42' },
   { value: 'moss', label: 'Moss', swatch: '#4c5347' },
   { value: 'slate', label: 'Slate', swatch: '#6e7478' },
   { value: 'charcoal', label: 'Charcoal', swatch: '#3a3733' },
-  { value: 'black', label: 'Black', swatch: '#1e1d1a' },
 ]
 
 export const PRICE_BANDS = [

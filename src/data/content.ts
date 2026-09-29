@@ -101,7 +101,7 @@ export const BRAND_PILLARS = [
   },
   {
     title: 'Fewer, better, longer',
-    copy: 'Eight models. No seasonal churn. Materials chosen to last past the point where most trainers are thrown away.',
+    copy: 'Seven models. No seasonal churn. Materials chosen to last past the point where most trainers are thrown away.',
   },
 ]
 

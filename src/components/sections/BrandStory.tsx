@@ -4,7 +4,6 @@ import { BRAND_PILLARS } from '@/data/content'
 import { products } from '@/data/products'
 import { Reveal } from '@/components/primitives/Reveal'
 import { Eyebrow } from '@/components/primitives/Bits'
-import { ShoeVisual } from '@/components/visuals/ShoeVisual'
 import { Photo } from '@/components/visuals/Photo'
 import { PHOTOS } from '@/data/photography'
 
@@ -95,18 +94,10 @@ export function BrandStory() {
                 return (
                   <Reveal key={cell.slug} delay={i * 0.08} className={cn(cell.offset)}>
                     <figure>
-                      <div
-                        className={cn('image-bed grain relative overflow-hidden', cell.aspect)}
-                      >
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <ShoeVisual
-                            parts={product.colorways[0].parts}
-                            shape={product.shape}
-                            view={cell.view}
-                            className={cell.scale}
-                            label={null}
-                          />
-                        </div>
+                      <div className={cn('relative overflow-hidden', cell.aspect)}>
+                        {product.images[0] && (
+                          <Photo photo={product.images[0]} className="absolute inset-0" />
+                        )}
                       </div>
                       <figcaption className="t-label mt-3 text-[color:var(--color-muted)]">
                         {cell.caption}

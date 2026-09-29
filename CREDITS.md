@@ -27,16 +27,37 @@ runtime dependency on anyone else's CDN.
 
 Each resolves at `https://images.unsplash.com/<id>`.
 
-### Why there are no product photographs
+### Product photography
 
-Every commercially licensed studio photograph of a sneaker that I could find
-is an identifiable Nike, Adidas, Jordan or Vans — the stock alt text often
-hides this (one labelled "a pair of white shoes" is a pair of Air Force 1s).
+| File | Unsplash photo ID | Used for |
+| --- | --- | --- |
+| `one-1…one-4.webp` | `photo-1603808033192-082d6919d3e1`, `-1603808033596-5d1fa1629eae`, `-1603808033176-9d134e6f2c74`, `-1603808033587-935942847de4` | AURA ONE |
+| `run.webp` | `photo-1562183241-b937e95585b6` | AURA RUN |
+| `form.webp` | `photo-1625860191460-10a66c7384fb` | AURA FORM |
+| `shift.webp` | `photo-1606846859455-1af0b84947f3` | AURA SHIFT |
+| `glide.webp` | `photo-1560769629-975ec94e6a86` | AURA GLIDE |
+| `low.webp` | `photo-1608384177866-0bca0d225435` | AURA LOW |
+| `step.webp` | `photo-1631087606988-a6be38fccaf6` | AURA STEP |
 
-Putting one of those under "AURA ONE — $180" would present another company's
-product as this brand's, which is a trademark problem and an obvious tell on
-a portfolio piece. So the products are drawn, and the photography carries the
-materials and the atmosphere instead. See `src/data/photography.ts`.
+**Every one was checked by eye at full resolution for third-party branding.**
+The stock alt text is not reliable for this: one image labelled "a pair of
+white shoes" is a pair of Nike Air Force 1s. Two strong candidates were cut
+late for exactly this reason — one had "Saint Laurent Paris" printed on the
+tongue, another a monogram across the heel counter.
+
+Known residual: the AURA ONE shoe carries a small debossed maker's mark on
+the outsole, tonal and illegible at any size the site displays it. Nothing
+appears on any upper.
+
+This is also why the catalogue is seven models rather than eight. There was
+no eighth unbranded shoe available, and an eighth product with a Nike photo
+under it would have been worse than one fewer product. AURA TRAIL was cut.
+
+Only AURA ONE has more than one photograph — four angles from a single
+shoot, which is why it carries the flagship gallery. That is the honest
+ceiling of what free licensed unbranded footwear photography supports, and
+it is why the colour selector reports a colour rather than offering a choice
+the imagery cannot honour.
 
 ## Type
 

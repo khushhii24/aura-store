@@ -1,12 +1,10 @@
 import { cn } from '@/lib/cn'
 import { STORY_FEATURES } from '@/data/content'
-import { flagship } from '@/data/products'
+import { getProduct } from '@/data/products'
 import { Reveal } from '@/components/primitives/Reveal'
 import { Eyebrow } from '@/components/primitives/Bits'
-import { ShoeVisual } from '@/components/visuals/ShoeVisual'
 import { Photo } from '@/components/visuals/Photo'
 import { PHOTOS, type PhotoKey } from '@/data/photography'
-import type { ShoeView } from '@/components/visuals/shoeGeometry'
 
 /**
  * Five things the shoe does, told as an editorial run rather than a spec
@@ -18,22 +16,20 @@ import type { ShoeView } from '@/components/visuals/shoeGeometry'
  * material claim is the one that earns a photograph — you cannot draw the
  * way a knit actually looks up close.
  */
-const CROPS: {
-  view?: ShoeView
-  photo?: PhotoKey
-  flip?: boolean
-  tone: 'stone' | 'dark'
-}[] = [
-  { view: 'heel', tone: 'stone' },
-  { view: 'hero', tone: 'dark' },
+/**
+ * Five images against five claims. Three material macros and two product
+ * photographs — the material claims are the ones a photograph can actually
+ * evidence.
+ */
+const CROPS: { photo: PhotoKey; product?: string; tone: 'stone' | 'dark' }[] = [
+  { photo: 'grainBeige', tone: 'stone' },
+  { photo: 'knitCharcoal', product: 'aura-run', tone: 'dark' },
   { photo: 'knitBone', tone: 'stone' },
-  { view: 'toe', flip: true, tone: 'stone' },
-  { view: 'sole', tone: 'dark' },
+  { photo: 'wovenCanvas', product: 'aura-low', tone: 'stone' },
+  { photo: 'leatherBlack', tone: 'dark' },
 ]
 
 export function ProductStory() {
-  const colorway = flagship.colorways[0]
-
   return (
     <section className="section-y" aria-labelledby="story-heading">
       <div className="container-aura">
@@ -70,18 +66,14 @@ export function ProductStory() {
                         crop.tone === 'dark' ? 'image-bed-deep grain grain-dark' : 'image-bed grain',
                       )}
                     >
-                      {crop.photo ? (
-                        <Photo photo={PHOTOS[crop.photo]} className="absolute inset-0" />
+                      {crop.product ? (
+                        <Photo
+                          photo={getProduct(crop.product)?.images[0] ?? PHOTOS[crop.photo]}
+                          className="absolute inset-0"
+                          alt=""
+                        />
                       ) : (
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <ShoeVisual
-                            parts={colorway.parts}
-                            shape={flagship.shape}
-                            view={crop.view}
-                            flip={crop.flip}
-                            label={null}
-                          />
-                        </div>
+                        <Photo photo={PHOTOS[crop.photo]} className="absolute inset-0" alt="" />
                       )}
                       <p
                         className={cn(

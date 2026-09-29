@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { flagship } from '@/data/products'
-import { ShoeVisual } from '@/components/visuals/ShoeVisual'
+import { Photo } from '@/components/visuals/Photo'
 
 export function NotFound() {
   useEffect(() => {
@@ -10,12 +10,11 @@ export function NotFound() {
 
   return (
     <section className="image-bed grain relative flex min-h-[70vh] items-center overflow-hidden">
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute right-[-20%] bottom-[-10%] w-[110%] opacity-70 md:w-[70%]"
-      >
-        <ShoeVisual parts={flagship.colorways[0].parts} shape={flagship.shape} label={null} />
-      </div>
+      {flagship.images[0] && (
+        <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-[46%] opacity-90 md:block">
+          <Photo photo={flagship.images[0]} alt="" className="h-full w-full" />
+        </div>
+      )}
 
       <div className="container-aura relative z-10 py-24">
         <p className="t-label text-[color:var(--color-on-bed)]">Error 404</p>

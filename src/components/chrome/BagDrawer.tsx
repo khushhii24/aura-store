@@ -4,7 +4,6 @@ import { cn } from '@/lib/cn'
 import { money, price } from '@/lib/format'
 import { Drawer } from '@/components/primitives/Overlay'
 import { QuantityStepper } from '@/components/primitives/Bits'
-import { ShoeVisual } from '@/components/visuals/ShoeVisual'
 import { DURATION, EASE } from '@/lib/motion'
 import { FREE_SHIPPING_THRESHOLD, useShop, type ResolvedLine } from '@/store/shop'
 
@@ -26,12 +25,18 @@ function BagLine({ line, justAdded }: { line: ResolvedLine; justAdded: boolean }
     >
       <Link
         to={`/product/${product.slug}`}
-        className="image-bed relative block h-24 w-28 shrink-0 overflow-hidden"
+        className="relative block h-24 w-28 shrink-0 overflow-hidden bg-[color:var(--color-bed-mid)]"
         aria-label={`AURA ${product.name}`}
       >
-        <span className="absolute inset-0 flex items-center justify-center">
-          <ShoeVisual parts={colorway.parts} shape={product.shape} label={null} />
-        </span>
+        {product.images[0] && (
+          <img
+            src={product.images[0].src}
+            alt=""
+            loading="lazy"
+            decoding="async"
+            className="photo-grade absolute inset-0 h-full w-full object-cover"
+          />
+        )}
       </Link>
 
       <div className="flex min-w-0 flex-1 flex-col">

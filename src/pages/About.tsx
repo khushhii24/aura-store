@@ -10,7 +10,6 @@ import { flagship, products } from '@/data/products'
 import { press } from '@/data/reviews'
 import { Reveal } from '@/components/primitives/Reveal'
 import { Eyebrow } from '@/components/primitives/Bits'
-import { ShoeVisual } from '@/components/visuals/ShoeVisual'
 import { Photo } from '@/components/visuals/Photo'
 import { PHOTOS, type PhotoKey } from '@/data/photography'
 
@@ -55,16 +54,11 @@ export function About() {
       {/* ----------------------------------------------------------- hero */}
       <section className="image-bed grain relative overflow-hidden">
         {/* The right half was a large empty field at desktop widths. */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute top-1/2 right-[-24%] hidden w-[70%] -translate-y-1/2 opacity-90 lg:block"
-        >
-          <ShoeVisual
-            parts={flagship.colorways[4]?.parts ?? flagship.colorways[0].parts}
-            shape={flagship.shape}
-            label={null}
-          />
-        </div>
+        {flagship.images[0] && (
+          <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-[44%] lg:block">
+            <Photo photo={flagship.images[0]} alt="" className="h-full w-full" />
+          </div>
+        )}
 
         <div className="container-aura relative z-10 py-20 md:py-28 lg:py-36">
           <Eyebrow className="text-[color:var(--color-on-bed)]">About AURA</Eyebrow>
@@ -109,7 +103,7 @@ export function About() {
             <dl className="mt-14 grid gap-8 border-t border-[color:var(--color-line-strong)] pt-10 sm:grid-cols-3">
               {[
                 { term: 'Founded', value: '2023' },
-                { term: 'Models', value: 'Eight' },
+                { term: 'Models', value: 'Seven' },
                 { term: 'Wear test', value: '30 days' },
               ].map((stat) => (
                 <div key={stat.term}>
@@ -121,19 +115,12 @@ export function About() {
           </Reveal>
 
           <Reveal className="lg:col-span-5" delay={0.06}>
-            <div className="image-bed grain relative aspect-[4/5] overflow-hidden">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <ShoeVisual
-                  parts={flagship.colorways[2].parts}
-                  shape={flagship.shape}
-                  view="heel"
-                  label={`Heel detail of AURA ${flagship.name}`}
-                />
-              </div>
-              <p className="t-label absolute bottom-5 left-5 text-[color:var(--color-on-bed)]">
-                Heel counter — AURA {flagship.name}
-              </p>
-            </div>
+            <figure>
+              <Photo photo={PHOTOS.leatherTan} className="aspect-[4/5]" alt="" />
+              <figcaption className="t-label mt-3 text-[color:var(--color-muted)]">
+                Vegetable-tanned leather, Portugal
+              </figcaption>
+            </figure>
           </Reveal>
         </div>
       </section>

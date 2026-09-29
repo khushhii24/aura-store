@@ -3,10 +3,8 @@ import { Link } from 'react-router-dom'
 import { cn } from '@/lib/cn'
 import { price } from '@/lib/format'
 import type { Product } from '@/data/types'
-import { ShoeVisual } from '@/components/visuals/ShoeVisual'
 import { Swatch } from '@/components/primitives/Bits'
 import { WishlistButton } from './WishlistButton'
-import type { ShoeView } from '@/components/visuals/shoeGeometry'
 
 const BADGE_LABEL: Record<NonNullable<Product['badge']>, string> = {
   new: 'New',
@@ -19,13 +17,6 @@ export type CardLayout = 'square' | 'portrait' | 'wide'
 interface ProductCardProps {
   product: Product
   layout?: CardLayout
-  /** The shot shown at rest. */
-  view?: ShoeView
-  /** The shot revealed on hover — a real second angle, not a zoom. */
-  hoverView?: ShoeView
-  flip?: boolean
-  tone?: 'stone' | 'dark'
-  /** Index used only to stagger nothing — kept for grid keys. */
   className?: string
   priority?: boolean
 }
@@ -39,50 +30,58 @@ const ASPECT: Record<CardLayout, string> = {
 export function ProductCard({
   product,
   layout = 'square',
-  view = 'hero',
-  hoverView = 'top',
-  flip = false,
-  tone = 'stone',
   className,
   priority = false,
 }: ProductCardProps) {
-  /** The card previews colourways in place — no navigation required. */
-  const [colorIndex, setColorIndex] = useState(0)
-  const colorway = product.colorways[colorIndex]
+  const [hovered, setHovered] = useState(false)
+  const colorway = product.colorways[0]
   const to = `/product/${product.slug}`
+  const primary = product.images[0]
+  /** Only AURA ONE has a second angle; the rest lean on a slow zoom instead. */
+  const secondary = product.images[1]
+
+  if (!primary) return null
 
   return (
-    <article className={cn('group/card flex flex-col', className)}>
-      <div
-        className={cn(
-          'relative isolate overflow-hidden',
-          ASPECT[layout],
-          tone === 'dark' ? 'image-bed-deep grain grain-dark' : 'image-bed grain',
-        )}
-      >
+    <article
+      className={cn('group/card flex flex-col', className)}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      <div className={cn('relative isolate overflow-hidden bg-[color:var(--color-bed-mid)]', ASPECT[layout])}>
         <Link
           to={to}
           className="absolute inset-0 block focus-visible:outline-offset-[-3px]"
           aria-label={`${product.name} — ${product.tagline}, ${price(product.price)}`}
         >
-          <span className="absolute inset-0 flex items-center justify-center transition-opacity duration-[var(--duration-image)] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/card:opacity-0">
-            <ShoeVisual
-              parts={colorway.parts}
-              shape={product.shape}
-              view={view}
-              flip={flip}
-              label={null}
+          <img
+            src={primary.src}
+            alt={primary.alt}
+            width={primary.width}
+            height={primary.height}
+            loading={priority ? 'eager' : 'lazy'}
+            decoding="async"
+            className={cn(
+              'photo-grade absolute inset-0 h-full w-full object-cover transition-all duration-[var(--duration-image)] ease-[cubic-bezier(0.16,1,0.3,1)]',
+              secondary && hovered ? 'opacity-0' : 'opacity-100',
+              !secondary && 'group-hover/card:scale-[1.04]',
+            )}
+          />
+          {secondary && (
+            <img
+              src={secondary.src}
+              alt=""
+              width={secondary.width}
+              height={secondary.height}
+              loading="lazy"
+              decoding="async"
+              aria-hidden="true"
+              className={cn(
+                'photo-grade absolute inset-0 h-full w-full object-cover transition-opacity duration-[var(--duration-image)] ease-[cubic-bezier(0.16,1,0.3,1)]',
+                hovered ? 'opacity-100' : 'opacity-0',
+              )}
             />
-          </span>
-          <span className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-[var(--duration-image)] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/card:opacity-100">
-            <ShoeVisual
-              parts={colorway.parts}
-              shape={product.shape}
-              view={hoverView}
-              flip={flip}
-              label={null}
-            />
-          </span>
+          )}
         </Link>
 
         {product.badge && (
@@ -103,22 +102,13 @@ export function ProductCard({
           className="absolute top-3 right-3 z-10 md:top-4 md:right-4"
         />
 
-        {/* Sizes in stock — the one piece of information that stops a
-            shopper opening a page just to find their size is gone. */}
         <div
           className={cn(
-            'pointer-events-none absolute inset-x-0 bottom-0 z-10 hidden translate-y-2 p-4 opacity-0 transition-all duration-[var(--duration-ui)] ease-[cubic-bezier(0.16,1,0.3,1)] md:block',
+            'pointer-events-none absolute inset-x-0 bottom-0 z-10 hidden translate-y-2 bg-gradient-to-t from-[#14120e]/55 to-transparent p-4 opacity-0 transition-all duration-[var(--duration-ui)] ease-[cubic-bezier(0.16,1,0.3,1)] md:block',
             'group-hover/card:translate-y-0 group-hover/card:opacity-100',
           )}
         >
-          <p
-            className={cn(
-              't-label',
-              tone === 'dark'
-                ? 'text-[color:var(--color-on-dark-muted)]'
-                : 'text-[color:var(--color-on-bed)]',
-            )}
-          >
+          <p className="t-label text-[color:var(--color-on-dark)]">
             {product.sizes.length - product.soldOutSizes.length} sizes in stock
           </p>
         </div>
@@ -146,21 +136,8 @@ export function ProductCard({
       </div>
 
       <div className="mt-3 flex items-center gap-2.5">
-        {product.colorways.map((c, i) => (
-          <button
-            key={c.id}
-            type="button"
-            onClick={() => setColorIndex(i)}
-            aria-label={`Preview ${product.name} in ${c.name}`}
-            aria-pressed={i === colorIndex}
-            className="flex h-6 w-6 items-center justify-center"
-          >
-            <Swatch colors={c.swatch} selected={i === colorIndex} size={16} />
-          </button>
-        ))}
-        <span className="t-small ml-1 text-[color:var(--color-muted)]">
-          {product.colorways.length} colours
-        </span>
+        <Swatch colors={colorway.swatch} size={16} />
+        <span className="t-small text-[color:var(--color-muted)]">{colorway.name}</span>
       </div>
     </article>
   )

@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { Check, Info, Lock } from 'lucide-react'
 import { cn } from '@/lib/cn'
 import { money } from '@/lib/format'
-import { ShoeVisual } from '@/components/visuals/ShoeVisual'
 import { ProductCard } from '@/components/product/ProductCard'
 import { featuredProducts } from '@/data/products'
 import { Eyebrow } from '@/components/primitives/Bits'
@@ -186,15 +185,11 @@ export function Checkout() {
 
         <h2 className="t-label mt-16 text-[color:var(--color-muted)]">Most people start here</h2>
         <div className="mt-8 grid gap-x-5 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-8">
-          {featuredProducts.slice(0, 3).map((product, i) => (
+          {featuredProducts.slice(0, 3).map((product) => (
             <ProductCard
               key={product.id}
               product={product}
               layout="square"
-              view={i === 1 ? 'top' : 'hero'}
-              hoverView={i === 1 ? 'hero' : 'profile'}
-              flip={i === 2}
-              tone={i === 1 ? 'dark' : 'stone'}
               priority
             />
           ))}
@@ -342,14 +337,16 @@ export function Checkout() {
               <ul className="mt-6 space-y-5">
                 {lines.map((line) => (
                   <li key={line.id} className="flex gap-4">
-                    <span className="image-bed relative block h-20 w-24 shrink-0 overflow-hidden">
-                      <span className="absolute inset-0 flex items-center justify-center">
-                        <ShoeVisual
-                          parts={line.colorway.parts}
-                          shape={line.product.shape}
-                          label={null}
+                    <span className="relative block h-20 w-24 shrink-0 overflow-hidden bg-[color:var(--color-bed-mid)]">
+                      {line.product.images[0] && (
+                        <img
+                          src={line.product.images[0].src}
+                          alt=""
+                          loading="lazy"
+                          decoding="async"
+                          className="photo-grade absolute inset-0 h-full w-full object-cover"
                         />
-                      </span>
+                      )}
                       <span
                         className="tabular absolute top-1 right-1 flex h-5 min-w-5 items-center justify-center bg-[color:var(--color-ink)] px-1 text-[10px] text-[color:var(--color-canvas)]"
                         aria-hidden="true"

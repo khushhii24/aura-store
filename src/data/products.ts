@@ -1,15 +1,12 @@
 import {
-  BONE_CLAY,
   BONE_VOLT,
   CHALK_SILVER,
   CHARCOAL_STONE,
-  CLAY_INK,
-  INK_SIGNAL,
   MOSS_BONE,
   SAND_CLAY,
   SLATE_ASH,
-  STORM_VOLT,
 } from './colorways'
+import { imagesFor } from './productImages'
 import type { Product } from './types'
 
 /** The size run AURA makes. US sizing; the guide converts. */
@@ -33,7 +30,8 @@ export const products: Product[] = [
       'ONE is the shoe the rest of the range is measured against. A single-piece engineered knit upper sits on a nitrogen-infused foam midsole tuned for the kind of distance nobody counts — the walk to the station, the standing meeting, the eleven-thousand steps you did not plan on. Light enough to train in, quiet enough to wear with anything.',
     story:
       'We built ONE after tracking how people actually move through a day. Not a workout and then the rest of it — a continuous, uneven, unplanned amount of walking, standing and occasional running for a train. So we stopped designing for one activity. The stack is high enough to absorb pavement for hours and low enough to feel the ground underneath you.',
-    colorways: [BONE_VOLT, CHARCOAL_STONE, SAND_CLAY, INK_SIGNAL, MOSS_BONE],
+    images: imagesFor('aura-one'),
+    colorways: [SAND_CLAY],
     sizes: SIZE_RUN,
     soldOutSizes: [6, 12.5],
     rating: 4.8,
@@ -83,7 +81,8 @@ export const products: Product[] = [
       'RUN strips ONE back to what a road runner needs. The same nitrogen foam, re-tuned firmer and set on a rocker geometry that keeps you rolling forward through the back half of a long run. The upper is a monofilament mesh you can see daylight through.',
     story:
       'The brief was a single number: under 220 grams, with a midsole that still feels alive at kilometre eighteen. Getting there meant deleting things — a heel counter became a thermoplastic strip, the tongue became part of the upper, the outsole became four rubber pads instead of a sheet.',
-    colorways: [BONE_VOLT, STORM_VOLT, INK_SIGNAL, CHALK_SILVER],
+    images: imagesFor('aura-run'),
+    colorways: [SLATE_ASH],
     sizes: SIZE_RUN,
     soldOutSizes: [6, 6.5, 13],
     rating: 4.7,
@@ -132,7 +131,8 @@ export const products: Product[] = [
       'FORM takes the ONE platform and removes every visual cue that says athletic. A smooth full-grain leather upper, a sole unit pared back to a clean line, and no logo anywhere you can see it from across a room. It still has the foam.',
     story:
       'A lot of people told us they wanted the comfort of a trainer and none of the look. FORM is the answer: the same midsole, hidden inside a shoe you can wear to dinner. The only marking is a debossed arc on the heel, and you have to be close to notice it.',
-    colorways: [CHALK_SILVER, BONE_CLAY, CLAY_INK, INK_SIGNAL, SLATE_ASH],
+    images: imagesFor('aura-form'),
+    colorways: [CHALK_SILVER],
     sizes: SIZE_RUN,
     soldOutSizes: [11.5],
     rating: 4.6,
@@ -178,7 +178,8 @@ export const products: Product[] = [
       'SHIFT is the shoe for the day that will not sit still. A collapsible heel lets you wear it down through security and pull it up on the other side. The upper is treated to shed a spilled coffee, and the whole thing packs flat enough to disappear into a carry-on.',
     story:
       'We kept seeing the same thing in airports — people wearing running shoes because nothing else survives fourteen hours of walking, then carrying a second pair for everything else. SHIFT is one pair that covers both ends of that day.',
-    colorways: [CHARCOAL_STONE, BONE_VOLT, SLATE_ASH, MOSS_BONE],
+    images: imagesFor('aura-shift'),
+    colorways: [CHARCOAL_STONE],
     sizes: SIZE_RUN,
     soldOutSizes: [6, 12.5, 13],
     rating: 4.7,
@@ -225,7 +226,8 @@ export const products: Product[] = [
       'GLIDE is the most cushioned shoe AURA makes — a 40 mm heel of nitrogen foam over a carbon-infused plate that keeps the whole thing from feeling vague. It is not a race shoe. It is the shoe that gets you to the race.',
     story:
       'Big foam usually costs you feel. GLIDE keeps it by running a thin plate through the middle of the stack, so the shoe stays honest about where the ground is while still taking the sting out of it.',
-    colorways: [STORM_VOLT, CHALK_SILVER, INK_SIGNAL],
+    images: imagesFor('aura-glide'),
+    colorways: [BONE_VOLT],
     sizes: SIZE_RUN,
     soldOutSizes: [6, 6.5, 7, 11.5, 12, 12.5, 13],
     rating: 4.9,
@@ -264,7 +266,8 @@ export const products: Product[] = [
       'LOW borrows its proportions from a 1970s court shoe and nothing else. Underneath the canvas is a compressed AURAFOAM wedge, so a silhouette that usually punishes you after two hours does not.',
     story:
       'The hardest part was resisting the urge to add. LOW has three panels, one line of stitching and a gum-toned outsole. Everything interesting about it is underneath.',
-    colorways: [CHALK_SILVER, BONE_CLAY, CLAY_INK, INK_SIGNAL],
+    images: imagesFor('aura-low'),
+    colorways: [CHALK_SILVER],
     sizes: SIZE_RUN,
     soldOutSizes: [6, 13],
     rating: 4.6,
@@ -290,46 +293,6 @@ export const products: Product[] = [
   },
 
   {
-    id: 'p-trail',
-    slug: 'aura-trail',
-    name: 'TRAIL',
-    tagline: 'All-terrain trail runner',
-    category: 'running',
-    audience: ['men', 'women'],
-    price: 215,
-    released: '2025-09-02',
-    badge: 'new',
-    shortDescription: 'Grip, protection and drainage for ground that will not stay flat.',
-    description:
-      'TRAIL takes the road platform off-road: a 4 mm lugged outsole, a rock plate under the forefoot, and a drainage-first upper that empties as fast as it fills. Built for the hour before work when the trail is still wet.',
-    story:
-      'Most trail shoes ask you to choose between grip and weight. We spent the budget on lug geometry instead of lug volume — sharper edges, shallower depth, more of them.',
-    colorways: [MOSS_BONE, SAND_CLAY, STORM_VOLT],
-    sizes: SIZE_RUN,
-    soldOutSizes: [6, 6.5, 12.5, 13],
-    rating: 4.5,
-    reviewCount: 88,
-    specs: [
-      { label: 'Weight', value: '294 g / 10.4 oz (US 9)' },
-      { label: 'Stack height', value: '34 mm heel / 26 mm forefoot' },
-      { label: 'Drop', value: '8 mm' },
-      { label: 'Fit', value: 'True to size, secure midfoot' },
-    ],
-    materials: [
-      'Abrasion-resistant ripstop with welded toe cap',
-      'Nitrogen-infused EVA midsole',
-      'Rock plate, forefoot only',
-      '4 mm multi-directional lugged rubber',
-    ],
-    technology: [
-      { name: 'Edge lugs', detail: 'Shallower lugs with sharper edges — grip without the weight.' },
-      { name: 'Rock plate', detail: 'A forefoot shield you only notice when you land on something.' },
-      { name: 'Drain-through', detail: 'Perforated footbed and upper — water leaves in under a minute.' },
-    ],
-    shape: { stack: 1, collar: 10, soleStyle: 'lugged', toe: 'round', outsole: 'lugs', overlay: 'arc', mudguard: true, lacing: 'laced', material: 'ripstop', perforated: false, heelTab: true },
-  },
-
-  {
     id: 'p-step',
     slug: 'aura-step',
     name: 'STEP',
@@ -343,7 +306,8 @@ export const products: Product[] = [
       'STEP is a one-piece knit with a structured collar that holds its shape when you push your foot in without your hands. The sole is a thinner AURAFOAM wedge tuned for standing, not striding.',
     story:
       'This started as a sample nobody asked for — ONE with the laces removed — and turned into the shoe most of the studio actually wears. Sometimes the edit is the product.',
-    colorways: [BONE_VOLT, CHARCOAL_STONE, SLATE_ASH, CLAY_INK],
+    images: imagesFor('aura-step'),
+    colorways: [MOSS_BONE],
     sizes: SIZE_RUN,
     soldOutSizes: [12.5, 13],
     rating: 4.4,

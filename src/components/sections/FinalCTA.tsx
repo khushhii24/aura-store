@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { getProduct } from '@/data/products'
 import { Reveal } from '@/components/primitives/Reveal'
-import { ShoeVisual } from '@/components/visuals/ShoeVisual'
+import { Photo } from '@/components/visuals/Photo'
 
 /**
  * The closing statement: one line of display type, one button, and the
@@ -15,7 +15,6 @@ import { ShoeVisual } from '@/components/visuals/ShoeVisual'
 export function FinalCTA() {
   const product = getProduct('aura-one')
   if (!product) return null
-  const colorway = product.colorways[1] ?? product.colorways[0]
 
   return (
     <section
@@ -28,7 +27,7 @@ export function FinalCTA() {
             Find your everyday movement.
           </h2>
           <p className="t-lede mx-auto mt-6 max-w-md">
-            Eight models, one platform underneath. Start with the one people keep coming back to.
+            Seven models, one platform underneath. Start with the one people keep coming back to.
           </p>
           <div className="mt-9 flex flex-wrap justify-center gap-3">
             <Link to="/shop" className="btn btn-solid btn-lg">
@@ -41,12 +40,13 @@ export function FinalCTA() {
         </Reveal>
       </div>
 
-      <div
-        aria-hidden="true"
-        className="relative mx-auto -mb-[14%] w-[158%] max-w-none -translate-x-[18%] md:-mb-[11%] md:w-[112%] md:-translate-x-[6%] lg:w-[88%] lg:translate-x-[6%]"
-      >
-        <ShoeVisual parts={colorway.parts} shape={product.shape} label={null} />
-      </div>
+      {product.images[0] && (
+        <Photo
+          photo={product.images[0]}
+          alt=""
+          className="h-[46vh] min-h-[20rem] w-full md:h-[58vh]"
+        />
+      )}
     </section>
   )
 }
