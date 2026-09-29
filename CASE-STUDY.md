@@ -160,6 +160,23 @@ spring, all in one file. Reduced motion collapses every entrance to opacity,
 turns the pinned construction sequence into a static layout and keeps every
 state reachable.
 
+### The construction section
+
+"Four layers, one shoe" used to show a generated exploded diagram. It now
+shows four photographs of a real shoe, one per layer, cross-fading as the
+section scrolls.
+
+Swapping a drawing for a photograph exposed something the drawing had been
+hiding: the copy claimed an engineered knit upper while the flagship's
+photographs are of a leather and nubuck sneaker. A drawing can be whatever
+the copy says; a photograph cannot. The layer copy was rewritten to describe
+construction rather than fibre, which is true of the shoe in the picture.
+
+The same pass removed a real registered trademark ("Ortholite(R)") that had
+been sitting in the fictional brand's own spec copy — the same class of
+problem as the branded imagery, and inconsistent to keep while cutting
+photographs for exactly that.
+
 ### Generating the 3D product view
 
 The PDP turns each shoe in 3D. There is no downloaded model: the mesh is

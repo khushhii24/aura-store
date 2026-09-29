@@ -46,7 +46,7 @@ export const products: Product[] = [
       'Engineered knit upper, 62% recycled polyester',
       'Nitrogen-infused EVA midsole',
       'Natural rubber outsole, 30% reclaimed content',
-      'Ortholite® footbed with a bio-oil blend',
+      'Moulded footbed with a bio-oil blend',
     ],
     technology: [
       {

@@ -25,7 +25,26 @@ runtime dependency on anyone else's CDN.
 | `street-legs.webp` | `photo-1758539324961-2febd04bc30d` |
 | `street-walk.webp` | `photo-1606049925382-6badf6de768e` |
 
-Each resolves at `https://images.unsplash.com/<id>`.
+| `construction/outsole.webp` | `ozIjZd7ZZ9s` |
+
+Each of the first group resolves at `https://images.unsplash.com/<id>`.
+
+### Construction photography
+
+The four images in the construction section are photographs of a real shoe.
+`construction/upper.webp`, `construction/cushioning.webp` and
+`construction/midsole.webp` are crops of the AURA ONE shoot listed below.
+
+`construction/outsole.webp` is a **different** photograph, and deliberately
+so. The AURA ONE sole carries a debossed maker's mark reading "theGom(R)".
+It is tonal and illegible at the size the gallery shows it, which is why the
+gallery keeps it — but a construction crop is a close-up, and at that size it
+is perfectly readable. So the outsole layer uses an unrelated, unbranded
+tread photograph instead.
+
+Unsplash+ results were excluded throughout: they carry a paid licence rather
+than the free Unsplash License, and several strong sole photographs had to be
+dropped for that reason alone.
 
 ### Product photography
 

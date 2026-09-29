@@ -219,10 +219,12 @@ Products are photographed. Seven models, ten images, bundled locally as WebP.
 Only AURA ONE has multiple angles, so the colour control reports the colourway
 rather than offering a choice the imagery cannot honour.
 
+The construction section is photographed too: four macros, one per layer.
+
 The generated geometry in `src/components/visuals/shoeGeometry.ts` did the
-product rendering first and now does two narrower jobs: the construction and
-exploded diagrams, and the 3D view. It builds every shoe from one lasting line
-and a thickness curve, normalised against real lateral proportions:
+product rendering first, then the construction diagram, and now has one job
+left — the 3D view. It builds every shoe from one lasting line and a
+thickness curve, normalised against real lateral proportions:
 
 ```
 collar top      0.355 L above ground

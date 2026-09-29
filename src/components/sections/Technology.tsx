@@ -2,14 +2,28 @@ import { useRef, useState } from 'react'
 import { AnimatePresence, motion, useMotionValueEvent, useReducedMotion, useScroll } from 'motion/react'
 import { cn } from '@/lib/cn'
 import { TECH_LAYERS } from '@/data/content'
-import { flagship } from '@/data/products'
-import { ExplodedShoe } from '@/components/visuals/ExplodedShoe'
 import { Eyebrow } from '@/components/primitives/Bits'
 import { useIsDesktop } from '@/lib/hooks'
 import { PHOTOS } from '@/data/photography'
+import { Photo } from '@/components/visuals/Photo'
 import { DURATION, EASE } from '@/lib/motion'
 
-const clamp01 = (n: number) => Math.min(1, Math.max(0, n))
+const clamp = (n: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, n))
+
+/**
+ * One photograph per layer, in the order the copy names them.
+ *
+ * These are photographs of a real shoe rather than the drawing that used to
+ * sit here. Three are cut from the flagship's own shoot; the outsole is a
+ * separate photograph, because the flagship's sole carries a debossed
+ * maker's mark that is illegible at gallery size and very legible in a crop.
+ */
+const LAYER_PHOTOS = [
+  PHOTOS.constructionUpper,
+  PHOTOS.constructionCushioning,
+  PHOTOS.constructionMidsole,
+  PHOTOS.constructionOutsole,
+]
 
 /**
  * The pinned list.
@@ -73,18 +87,18 @@ function LayerList({ active, expand }: { active: number | null; expand: boolean 
 }
 
 /**
- * Construction, taken apart on scroll.
+ * Construction, read one layer at a time.
  *
- * The desktop version pins the shoe and separates it as you read; the mobile
- * version shows it already apart and lets the list scroll normally, because a
- * pinned scroll-jack on a phone is a worse experience than a good static one.
+ * The desktop version pins the photograph and cross-fades it as you scroll;
+ * the mobile version gives each layer its own photograph in normal document
+ * flow, because a pinned scroll-jack on a phone is a worse experience than a
+ * good static one.
  */
 export function Technology() {
   const ref = useRef<HTMLDivElement>(null)
   const isDesktop = useIsDesktop()
   const reduced = useReducedMotion()
-  const [progress, setProgress] = useState(0)
-  const [active, setActive] = useState<number | null>(null)
+  const [active, setActive] = useState(0)
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -92,14 +106,13 @@ export function Technology() {
   })
 
   useMotionValueEvent(scrollYProgress, 'change', (p) => {
-    /** Rounded so scrolling triggers ~50 renders, not one per frame. */
-    setProgress(Math.round(clamp01((p - 0.04) / 0.32) * 50) / 50)
-    setActive(p < 0.4 ? null : Math.min(3, Math.floor((p - 0.4) / 0.145)))
+    /* A short lead-in so the section settles before the first layer, then
+       one layer per quarter of what is left. */
+    setActive(clamp(Math.floor((p - 0.06) / 0.225), 0, 3))
   })
 
-  /** A pale colourway: the dark band needs the product to carry the light. */
-  const colorway = flagship.colorways[0]
   const staticMode = !isDesktop || reduced
+  const photo = LAYER_PHOTOS[active]
 
   const heading = (
     <>
@@ -131,18 +144,35 @@ export function Technology() {
         decoding="async"
         className="photo-grade pointer-events-none absolute inset-0 -z-10 h-full w-full object-cover opacity-[0.14]"
       />
+
       {staticMode ? (
         <div className="container-aura section-y">
           {heading}
-          <div className="mt-10 aspect-[4/3] w-full">
-            <ExplodedShoe parts={colorway.parts} shape={flagship.shape} progress={1} active={null} />
-          </div>
-          <div className="mt-10">
-            <LayerList active={null} expand={false} />
-          </div>
+          {/* Each layer carries its own photograph rather than one shared
+              image, so nothing depends on a scroll position that does not
+              exist here. */}
+          <ol className="mt-10">
+            {TECH_LAYERS.map((layer, i) => (
+              <li key={layer.id} className="border-t border-[color:var(--color-line-dark)] py-8">
+                <Photo photo={LAYER_PHOTOS[i]} className="aspect-[4/3] w-full" />
+                <div className="mt-5 flex items-baseline gap-5">
+                  <span className="t-label tabular text-[color:var(--color-on-dark-muted)]">
+                    {layer.number}
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <h3 className="t-h3">{layer.name}</h3>
+                    <p className="t-label mt-1.5 text-[color:var(--color-on-dark-muted)]">
+                      {layer.summary}
+                    </p>
+                    <p className="t-body mt-3 max-w-prose">{layer.copy}</p>
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ol>
         </div>
       ) : (
-        <div ref={ref} className="relative h-[340vh]">
+        <div ref={ref} className="relative h-[300vh]">
           <div className="sticky top-0 flex h-screen items-center overflow-hidden">
             <div className="container-aura grid w-full items-center gap-12 lg:grid-cols-12 lg:gap-14">
               <div className="lg:col-span-5">
@@ -153,13 +183,29 @@ export function Technology() {
               </div>
 
               <div className="lg:col-span-7">
-                <div className="mx-auto h-[74vh] w-full max-w-[46rem]">
-                  <ExplodedShoe
-                    parts={colorway.parts}
-                    shape={flagship.shape}
-                    progress={progress}
-                    active={active}
-                  />
+                <div className="mx-auto w-full max-w-[46rem]">
+                  <div className="relative aspect-[4/3] w-full overflow-hidden">
+                    <AnimatePresence initial={false} mode="popLayout">
+                      <motion.div
+                        key={TECH_LAYERS[active].id}
+                        className="absolute inset-0"
+                        initial={{ opacity: 0, scale: 1.02 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: DURATION.ui, ease: EASE }}
+                      >
+                        <Photo photo={photo} className="h-full w-full" priority={active === 0} />
+                      </motion.div>
+                    </AnimatePresence>
+                  </div>
+                  {/* The photograph carries its own alternative text; this
+                      caption is for everyone reading the page. */}
+                  <p
+                    className="t-label mt-4 text-[color:var(--color-on-dark-muted)]"
+                    aria-hidden="true"
+                  >
+                    {TECH_LAYERS[active].number} — {TECH_LAYERS[active].name}
+                  </p>
                 </div>
               </div>
             </div>

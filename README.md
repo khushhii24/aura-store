@@ -95,6 +95,12 @@ WebP in `src/assets/products/` rather than hot-linked. AURA ONE has four
 angles from one shoot and carries a thumbnail gallery; the rest have one
 frame each.
 
+**The construction section is photographed.** The four layers each carry a
+real macro of a shoe rather than a drawing. Three are crops of the flagship's
+own shoot; the outsole is a separate photograph, because the flagship's sole
+carries a debossed maker's mark that is illegible at gallery size and very
+legible in a crop.
+
 **Materials and atmosphere are photographed too** — knit, canvas, leather and
 grain macros on the materials page, street scenes in the brand section. See
 `src/assets/photography/` and `CREDITS.md`.
