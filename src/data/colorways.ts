@@ -3,9 +3,11 @@ import type { Colorway, ShoeParts } from './types'
 /**
  * Colourways.
  *
- * These are not decorative swatches — every value is piped straight into the
- * SVG shoe, so choosing a colourway repaints the actual product. That is the
- * reason the product imagery is drawn rather than photographed.
+ * These are not decorative swatches. Every value drives the generated 3D
+ * model and the colour filter, so a colourway is data rather than a label.
+ * The products themselves are photographed, which is why each carries one
+ * colourway: the selector reports the colour in the picture rather than
+ * offering a choice the photography cannot honour.
  */
 
 const make = (

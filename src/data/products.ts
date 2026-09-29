@@ -27,7 +27,7 @@ export const products: Product[] = [
     shortDescription:
       'A lightweight everyday trainer engineered for movement from morning to night.',
     description:
-      'ONE is the shoe the rest of the range is measured against. A single-piece engineered knit upper sits on a nitrogen-infused foam midsole tuned for the kind of distance nobody counts — the walk to the station, the standing meeting, the eleven-thousand steps you did not plan on. Light enough to train in, quiet enough to wear with anything.',
+      'ONE is the shoe the rest of the range is measured against. A leather and nubuck upper sits on a nitrogen-infused foam midsole tuned for the kind of distance nobody counts — the walk to the station, the standing meeting, the eleven-thousand steps you did not plan on. Light enough to train in, quiet enough to wear with anything.',
     story:
       'We built ONE after tracking how people actually move through a day. Not a workout and then the rest of it — a continuous, uneven, unplanned amount of walking, standing and occasional running for a train. So we stopped designing for one activity. The stack is high enough to absorb pavement for hours and low enough to feel the ground underneath you.',
     images: imagesFor('aura-one'),
@@ -43,7 +43,7 @@ export const products: Product[] = [
       { label: 'Fit', value: 'True to size, standard width' },
     ],
     materials: [
-      'Engineered knit upper, 62% recycled polyester',
+      'Full-grain leather and nubuck upper',
       'Nitrogen-infused EVA midsole',
       'Natural rubber outsole, 30% reclaimed content',
       'Moulded footbed with a bio-oil blend',
@@ -54,15 +54,15 @@ export const products: Product[] = [
         detail: 'Nitrogen-infused midsole foam that returns energy without feeling springy.',
       },
       {
-        name: 'Knit One upper',
-        detail: 'A single piece of engineered knit — fewer seams, fewer places to rub.',
+        name: 'Three-panel upper',
+        detail: 'Nubuck where the shoe has to hold its shape, softer leather where the foot moves.',
       },
       {
         name: 'Ground Map outsole',
         detail: 'Rubber placed only where wear data said it was needed. Less weight, same grip.',
       },
     ],
-    shape: { stack: 1, collar: 0, soleStyle: 'wedge', toe: 'round', outsole: 'pods', overlay: 'arc', lacing: 'laced', material: 'knit', perforated: true, heelTab: true },
+    shape: { stack: 1, collar: 0, soleStyle: 'wedge', toe: 'round', outsole: 'pods', overlay: 'arc', lacing: 'laced', material: 'leather', perforated: false, heelTab: true },
   },
 
   {
@@ -147,7 +147,7 @@ export const products: Product[] = [
       'Full-grain leather, vegetable-tanned in Portugal',
       'Nitrogen-infused EVA midsole',
       'Cupsole with a natural rubber wrap',
-      'Recycled-cotton lining',
+      'Recycled-textile lining',
     ],
     technology: [
       {
@@ -191,10 +191,10 @@ export const products: Product[] = [
       { label: 'Fit', value: 'True to size, roomy toe box' },
     ],
     materials: [
-      'Water-repellent ripstop upper, PFC-free finish',
+      'Water-repellent brushed textile upper, PFC-free finish',
       'Nitrogen-infused EVA midsole',
       'Collapsible heel counter',
-      'Recycled-polyester laces and lining',
+      'Recycled-polyester lining',
     ],
     technology: [
       {
@@ -207,7 +207,7 @@ export const products: Product[] = [
       },
       { name: 'Packflat last', detail: 'Compresses to 60% of its height without creasing.' },
     ],
-    shape: { stack: 0.94, collar: 4, soleStyle: 'wedge', toe: 'round', outsole: 'pods', overlay: 'arc', lacing: 'laced', material: 'ripstop', perforated: false, heelTab: true },
+    shape: { stack: 0.94, collar: 4, soleStyle: 'wedge', toe: 'round', outsole: 'pods', overlay: 'arc', lacing: 'slip', material: 'canvas', perforated: false, heelTab: true },
   },
 
   {
@@ -263,9 +263,9 @@ export const products: Product[] = [
     released: '2025-04-15',
     shortDescription: 'A flat, clean court shape with a modern sole unit underneath.',
     description:
-      'LOW borrows its proportions from a 1970s court shoe and nothing else. Underneath the canvas is a compressed AURAFOAM wedge, so a silhouette that usually punishes you after two hours does not.',
+      'LOW borrows its proportions from a 1970s court shoe and nothing else. Underneath the leather is a compressed AURAFOAM wedge, so a silhouette that usually punishes you after two hours does not.',
     story:
-      'The hardest part was resisting the urge to add. LOW has three panels, one line of stitching and a gum-toned outsole. Everything interesting about it is underneath.',
+      'The hardest part was resisting the urge to add. LOW has three panels, one line of stitching and an ivory outsole. Everything interesting about it is underneath.',
     images: imagesFor('aura-low'),
     colorways: [CHALK_SILVER],
     sizes: SIZE_RUN,
@@ -279,17 +279,17 @@ export const products: Product[] = [
       { label: 'Fit', value: 'Runs slightly large — consider a half size down' },
     ],
     materials: [
-      'Organic cotton canvas upper',
+      'Smooth full-grain leather upper',
       'Compressed AURAFOAM wedge',
       'Vulcanised natural rubber outsole',
-      'Recycled-cotton lining',
+      'Recycled-textile lining',
     ],
     technology: [
       { name: 'Compressed wedge', detail: 'The foam, densified, so a flat shoe still has something in it.' },
       { name: 'Vulcanised bond', detail: 'Heat-bonded sole, not glued. It stays on.' },
       { name: 'Court last', detail: 'A narrow, flat last with an unbroken toe line.' },
     ],
-    shape: { stack: 0.82, collar: -8, soleStyle: 'cupsole', toe: 'blunt', outsole: 'gum', overlay: 'none', lacing: 'laced', material: 'canvas', perforated: false, heelTab: false },
+    shape: { stack: 0.82, collar: -8, soleStyle: 'cupsole', toe: 'blunt', outsole: 'gum', overlay: 'none', lacing: 'laced', material: 'leather', perforated: false, heelTab: false },
   },
 
   {

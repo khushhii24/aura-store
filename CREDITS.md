@@ -64,9 +64,30 @@ white shoes" is a pair of Nike Air Force 1s. Two strong candidates were cut
 late for exactly this reason — one had "Saint Laurent Paris" printed on the
 tongue, another a monogram across the heel counter.
 
-Known residual: the AURA ONE shoe carries a small debossed maker's mark on
-the outsole, tonal and illegible at any size the site displays it. Nothing
-appears on any upper.
+### Known residuals, and one open problem
+
+**AURA ONE** carries a small debossed maker's mark on the outsole reading
+"theGom(R)". It is tonal and illegible at any size the site displays it. It
+is legible in a close crop, which is why the construction section sources its
+outsole image elsewhere.
+
+**AURA SHIFT — unresolved.** A later pass found "mahabis", a real footwear
+brand, embossed on the sole of the near shoe. It is tonal and not legible at
+the size the page renders it, but it is perfectly legible in the bundled
+asset, and it is a competitor's wordmark under a product priced as AURA's.
+It cannot be cropped out without cutting the soles off both shoes. The
+options are to replace the photograph or to drop the model, the way AURA
+TRAIL was dropped; it is recorded here rather than quietly left.
+
+**AURA RUN** is a recognisable silhouette — the web-overlay upper is closely
+associated with one manufacturer's model. No wordmark or three-stripe mark is
+legible in the frame, so this is a likeness judgement rather than a visible
+trademark, and it is noted for the same reason.
+
+This is what the earlier claim that every image was checked should have said.
+Checking caught the obvious marks and missed a tonal one on a white sole; the
+rule that fixed it was to inspect every sole, tongue and heel at full
+resolution rather than scanning the image as a whole.
 
 This is also why the catalogue is seven models rather than eight. There was
 no eighth unbranded shoe available, and an eighth product with a Nike photo
