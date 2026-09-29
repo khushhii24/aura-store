@@ -130,7 +130,7 @@ export const products: Product[] = [
     description:
       'FORM takes the ONE platform and removes every visual cue that says athletic. A smooth full-grain leather upper, a sole unit pared back to a clean line, and no logo anywhere you can see it from across a room. It still has the foam.',
     story:
-      'A lot of people told us they wanted the comfort of a trainer and none of the look. FORM is the answer: the same midsole, hidden inside a shoe you can wear to dinner. The only marking is a debossed arc on the heel, and you have to be close to notice it.',
+      'A lot of people told us they wanted the comfort of a trainer and none of the look. FORM is the answer: the same midsole, hidden inside a shoe you can wear to dinner. Nothing on the outside says which shoe it is.',
     images: imagesFor('aura-form'),
     colorways: [CHALK_SILVER],
     sizes: SIZE_RUN,
@@ -158,7 +158,6 @@ export const products: Product[] = [
         name: 'Single-line last',
         detail: 'One unbroken line from heel to toe — the detail that makes it read as a shoe.',
       },
-      { name: 'Debossed arc', detail: 'The only branding, pressed into the heel counter.' },
     ],
     shape: { stack: 0.92, collar: -4, soleStyle: 'cupsole', toe: 'round', outsole: 'gum', overlay: 'none', lacing: 'laced', material: 'leather', perforated: false, heelTab: false },
   },
