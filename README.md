@@ -1,5 +1,7 @@
 # AURA — premium footwear e-commerce experience
 
+[![verify](https://github.com/khushhii24/aura-store/actions/workflows/ci.yml/badge.svg)](https://github.com/khushhii24/aura-store/actions/workflows/ci.yml)
+
 A front-end storefront concept for a fictional performance-lifestyle footwear
 brand. Six products, a working catalogue with filtering and sorting, a full
 product page, search, wishlist, a shopping bag and a prototype checkout —
@@ -171,7 +173,8 @@ is nothing to type real details into.
   traps Tab, closes on Escape, and restores focus to whatever opened it.
 - Selection controls use real radio/checkbox semantics or `aria-pressed`;
   sold-out sizes are `disabled` and announced.
-- Contrast is measured, not assumed — `npm run check:contrast` covers 39
+- Contrast is measured, not assumed, and enforced — `npm run check:contrast`
+  exits non-zero on any failure and runs on every push. It covers 39
   token pairs including borders (3:1) and text (4.5:1). Text over photography
   is measured separately against the image's own brightest pixels, which is
   how the construction band's backdrop ended up capped at 14% opacity.

@@ -1,0 +1,60 @@
+name: verify
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+# A superseded run tells you nothing useful.
+concurrency:
+  group: verify-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      # The next three are what `npm run verify` chains together. They run as
+      # separate steps so a red check names the thing that broke rather than
+      # just saying "verify".
+      - name: Typecheck
+        run: npm run typecheck
+
+      # Contrast is measured, not assumed: 39 token pairs against WCAG AA,
+      # 4.5:1 for text and 3:1 for interactive borders. Exits non-zero on any
+      # failure, so this is a real gate.
+      - name: Contrast audit
+        run: npm run check:contrast
+
+      - name: Build
+        run: npm run build
+
+      # three.js is code-split behind the "View in 3D" toggle and belongs in
+      # its own chunk. It drifted into the eager bundle once — 334 kB to
+      # 492 kB — because a dev-only route kept a static import in the main
+      # graph, and `import.meta.env.DEV` does nothing about that. This is the
+      # cheap guard against it happening again.
+      - name: Bundle budget
+        run: |
+          main=$(ls dist/assets/index-*.js)
+          size=$(stat -c%s "$main")
+          echo "main bundle: $((size / 1024)) kB — $(basename "$main")"
+          if [ "$size" -gt 409600 ]; then
+            echo "::error::main bundle is $((size / 1024)) kB, over the 400 kB budget — has three.js leaked out of its chunk?"
+            exit 1
+          fi
