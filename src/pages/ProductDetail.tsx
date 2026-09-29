@@ -110,8 +110,10 @@ export function ProductDetail() {
           <Reveal className="lg:col-span-7" delay={0.06}>
             <div className="relative aspect-[4/3] overflow-hidden">
               <Photo photo={PHOTOS.knitCharcoal} className="absolute inset-0" alt="" />
-
             </div>
+            <p className="t-label mt-3 text-[color:var(--color-muted)]">
+              Material — {colorway.name}
+            </p>
           </Reveal>
         </div>
       </section>

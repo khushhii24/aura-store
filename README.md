@@ -86,33 +86,33 @@ one folder.
 
 ## Imagery
 
-The site mixes two media, deliberately.
+**Products are photographed.** Seven models, ten images, bundled locally as
+WebP in `src/assets/products/` rather than hot-linked. AURA ONE has four
+angles from one shoot and carries a thumbnail gallery; the rest have one
+frame each.
 
-**Photography** carries the materials and the atmosphere: knit, canvas,
-leather and grain macros on the materials page, and street scenes in the
-brand section. All from Unsplash under the Unsplash License, re-encoded as
-WebP and bundled into `src/assets/photography/` rather than hot-linked. See
-`CREDITS.md`.
+**Materials and atmosphere are photographed too** — knit, canvas, leather and
+grain macros on the materials page, street scenes in the brand section. See
+`src/assets/photography/` and `CREDITS.md`.
 
-**The products are drawn**, from
-`src/components/visuals/shoeGeometry.ts`. One lasting line and one thickness
-curve produce all eight models; sole architecture, toe shape, toe spring and
-outsole construction separate a vulcanised court shoe from a 40mm-stack road
-runner.
+Every photograph was checked by eye at full resolution for third-party
+branding, because the stock alt text cannot be trusted: one image labelled
+"a pair of white shoes" is a pair of Air Force 1s. Two candidates were cut
+late for exactly that — "Saint Laurent Paris" on a tongue, a monogram across
+a heel counter.
 
-That split is not a stylistic preference. Every commercially licensed studio
-photograph of a sneaker available is an identifiable Nike, Adidas, Jordan or
-Vans — the stock alt text often hides it, and one labelled "a pair of white
-shoes" turned out to be Air Force 1s. Putting one of those under
-"AURA ONE — $180" would present another company's product as this brand's.
-Textures and street scenes carry no such claim.
+Three things took their shape from what licensed unbranded footwear
+photography actually supports, all recorded in `CREDITS.md`: seven models
+rather than eight, multiple angles for the flagship only, and one colourway
+per model (the selector reports the colour rather than offering a choice the
+imagery cannot honour).
 
-Drawing the products also buys three things a photograph cannot: colourways
-repaint the shoe live, the construction section takes it apart into four
-layers, and eight models share a family resemblance.
+**The construction section is still generated**, from
+`src/components/visuals/shoeGeometry.ts` — it takes the shoe apart into four
+layers as you scroll, which no photograph does.
 
-See `DESIGN-SYSTEM.md` for the proportions, the photo grade and the rest of
-the tokens.
+One shared grade (`.photo-grade`) puts images from a dozen photographers onto
+the same palette. See `DESIGN-SYSTEM.md`.
 
 ---
 

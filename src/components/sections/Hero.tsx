@@ -46,6 +46,14 @@ export function Hero() {
         >
           <p className="t-lede">Performance engineered for everyday movement.</p>
 
+          <p className="t-label mt-7 hidden text-[color:var(--color-on-bed)] lg:block">
+            Shown: AURA {flagship.name}
+            <span className="mx-2 text-[color:var(--color-line-strong)]">/</span>
+            {colorway.name}
+            <span className="mx-2 text-[color:var(--color-line-strong)]">/</span>
+            <span className="tabular">{price(flagship.price)}</span>
+          </p>
+
           <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <Link to="/shop" className="btn btn-solid btn-lg">
               Shop the collection
@@ -69,7 +77,7 @@ export function Hero() {
       </motion.div>
 
       <motion.div
-        className="container-aura relative z-10 flex w-full flex-wrap items-end justify-between gap-x-6 gap-y-4 pt-7 pb-8 lg:pt-0"
+        className="container-aura relative z-10 flex w-full flex-wrap items-end justify-between gap-x-6 gap-y-4 pt-7 pb-8 lg:absolute lg:inset-x-0 lg:bottom-0 lg:pt-0"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: DURATION.reveal, ease: EASE, delay: 0.6 }}
@@ -84,18 +92,15 @@ export function Hero() {
           Scroll
         </a>
 
-        {/* The colourway is dropped below sm — the full credit does not fit
-            on a 390px line and wrapping it reads as a mistake. */}
-        <p className="t-label ml-auto text-right whitespace-nowrap text-[color:var(--color-on-bed)]">
+        {/* The credit stays inside the type column. On lg the right half of
+            this band is the photograph, and text does not sit on photographs. */}
+        <p className="t-label text-[color:var(--color-on-bed)] lg:hidden">
           AURA {flagship.name}
-          <span className="hidden sm:inline">
-            <span className="mx-2 text-[color:var(--color-line-strong)]">/</span>
-            {colorway.name}
-          </span>
           <span className="mx-2 text-[color:var(--color-line-strong)]">/</span>
           <span className="tabular">{price(flagship.price)}</span>
         </p>
       </motion.div>
+
     </section>
   )
 }

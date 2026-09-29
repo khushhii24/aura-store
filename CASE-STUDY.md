@@ -32,10 +32,10 @@ structural, not decorative.
 bag that survives a refresh. A reviewer who clicks anything should find
 something real underneath.
 
-**It could not rely on product photography.** A concept brand has no product
-shots of its own, and every licensable studio photograph of a sneaker is
-somebody else's branded product. Photography had to earn its place somewhere
-other than the product shot.
+**Photography was a licensing problem, not a sourcing one.** A concept brand
+has no product shots of its own, and almost every licensable studio
+photograph of a sneaker is somebody else's branded product. The catalogue had
+to be built around what passed that filter.
 
 ---
 
@@ -78,44 +78,44 @@ even through a 70% scrim — so the captions moved underneath instead.
 
 ---
 
-## Imagery: a deliberate split
+## Imagery
 
-The site mixes two media, and the reason is worth stating.
+The products are photographed. Getting there was the most instructive part of
+the build, because the obvious approach does not survive contact with the
+licensing.
 
-**Photography carries the materials and the atmosphere.** Knit, canvas,
-leather and grain macros sit beside each material on the about page; street
-scenes carry the brand section, where the headline is "built for the way life
-actually moves" and two more product shots would have said nothing.
+Free stock photography of sneakers is almost entirely **identifiable branded
+product** — Nike, Adidas, Jordan, Vans. The alt text actively hides it: one
+image captioned "a pair of white shoes" is a pair of Air Force 1s. Putting
+one of those under "AURA ONE — $180" presents another company's product as
+this brand's. So every candidate was opened at full resolution and checked by
+eye; two strong ones were cut late, one with "Saint Laurent Paris" printed on
+the tongue and one with a monogram across the heel counter.
 
-**The products are drawn.** Not as a stylistic preference — I went looking for
-product photography and found that every commercially licensed studio
-photograph of a sneaker is an identifiable Nike, Adidas, Jordan or Vans. The
-stock alt text actively hides it: one labelled "a pair of white shoes" is a
-pair of Air Force 1s. Putting one of those under "AURA ONE — $180" would
-present another company's product as this brand's, which is a trademark
-problem and an obvious tell on a portfolio piece.
+What survived that filter shaped the catalogue rather than the other way
+round:
 
-So the products are generated from one lasting line and one sole-thickness
-curve, normalised against real lateral proportions — collar at 0.355 of shoe
-length above the ground, heel stack at 0.120, toe box at 0.100. The eight
-models differ at the silhouette level: sole architecture (wedge, rocker,
-cupsole, slab, lugged), toe shape, toe spring and outsole construction
-(rubber pods, full coverage, a gum cupsole wrapping the sidewall, trail
-lugs). Surfaces are shaded with form gradients, contact occlusion, specular
-highlights and per-material texture.
+- **Seven models, not eight.** There was no eighth unbranded shoe, and an
+  eighth product with a Nike photo under it is worse than one fewer product.
+- **One shoot has four angles**, so AURA ONE carries the thumbnail gallery
+  and the rest collapse to a single frame instead of padding out with the
+  same picture four times.
+- **One colourway per model**, so the selector reports a colour rather than
+  offering a choice the imagery cannot honour, and the colour filter is
+  trimmed to the families the catalogue actually carries.
 
-That decision pays for itself three times:
+Materials and atmosphere are photographed too — knit, canvas, leather and
+grain macros against each material claim, street scenes in the brand section
+where the headline is "built for the way life actually moves" and another
+product shot would have said nothing.
 
-- **Colourways repaint the product in real time.** Every part colour comes
-  from the selected swatch, so choosing a colour changes the shoe you are
-  looking at instead of loading another image.
-- **The construction section takes the shoe apart.** The same geometry cuts
-  into four layers that separate as you scroll. No photograph does that.
-- **The catalogue looks like one studio made it.** Eight models sharing one
-  silhouette engine have a family resemblance eight stock photos never would.
+One shared grade — a desaturation and a warm tint — puts images from a dozen
+photographers onto one palette, which is most of why a catalogue shot on a
+dozen different grounds still reads as one brand.
 
-One shared grade — a desaturation and a warm tint — puts photographs from ten
-different photographers onto the same palette as the drawn products.
+The **construction section stays generated**, from a parametric geometry
+normalised against real lateral proportions. It takes the shoe apart into
+four layers as you scroll, which is the one thing a photograph cannot do.
 
 ## Key UX features
 
