@@ -7,14 +7,31 @@ import { Eyebrow } from '@/components/primitives/Bits'
 import { ShoeVisual } from '@/components/visuals/ShoeVisual'
 
 /**
- * The brand section is the only place on the site with three products in one
- * composition. Offset heights and one dark panel keep it from reading as a
- * row of tiles.
+ * Two products at scale, one offset against the other.
+ *
+ * This started as three tiles across the column. At 1440 that made each one
+ * about 230px wide — thumbnails, not a composition — and left a dead band
+ * underneath. Two is fewer products and a much better picture.
  */
 const COMPOSITION = [
-  { slug: 'aura-form', view: 'profile', tone: 'stone', aspect: 'aspect-[3/4]', offset: '' },
-  { slug: 'aura-shift', view: 'top', tone: 'dark', aspect: 'aspect-[4/5]', offset: 'md:mt-16' },
-  { slug: 'aura-run', view: 'profile', tone: 'stone', aspect: 'aspect-[3/4]', offset: 'md:mt-6' },
+  {
+    slug: 'aura-form',
+    view: 'profile',
+    tone: 'stone',
+    aspect: 'aspect-[4/5]',
+    offset: '',
+    /* The shoe is a 2.3:1 shape in a 0.8:1 plate, so it is scaled up and
+       cropped by the frame rather than floating in the middle of it. */
+    scale: 'scale-[1.32]',
+  },
+  {
+    slug: 'aura-shift',
+    view: 'top',
+    tone: 'dark',
+    aspect: 'aspect-[3/4]',
+    offset: 'sm:mt-16',
+    scale: 'scale-[1.2]',
+  },
 ] as const
 
 export function BrandStory() {
@@ -47,16 +64,13 @@ export function BrandStory() {
           </Reveal>
 
           <div className="lg:col-span-7">
-            <div className="grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-5">
+            {/* Side by side on a phone would be two 167px plates. Stack them. */}
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:gap-6">
               {COMPOSITION.map((cell, i) => {
                 const product = products.find((p) => p.slug === cell.slug)
                 if (!product) return null
                 return (
-                  <Reveal
-                    key={cell.slug}
-                    delay={i * 0.07}
-                    className={cn(cell.offset, i === 2 && 'col-span-2 md:col-span-1')}
-                  >
+                  <Reveal key={cell.slug} delay={i * 0.08} className={cn(cell.offset)}>
                     <figure>
                       <div
                         className={cn(
@@ -72,6 +86,7 @@ export function BrandStory() {
                             parts={product.colorways[0].parts}
                             shape={product.shape}
                             view={cell.view}
+                            className={cell.scale}
                             label={null}
                           />
                         </div>
