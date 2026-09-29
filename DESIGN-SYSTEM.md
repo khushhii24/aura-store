@@ -190,7 +190,30 @@ smooth scrolling. Every state stays reachable; nothing slides.
 
 ---
 
-## 7. Product imagery
+## 7. Photography
+
+One grade across every photograph, in `.photo-grade`:
+
+```css
+filter: saturate(0.72) sepia(0.1) contrast(1.04);
+```
+
+Ten photographers' images pull in ten directions otherwise. A shared
+desaturation and warm tint puts them on the same palette as the rest of the
+site, which is most of why they read as one brand's picture library.
+
+Every image goes through `<Photo>`, which also reserves space from the
+intrinsic dimensions so nothing shifts as photographs arrive.
+
+**Text never sits on a photograph.** Captions go underneath. This is a
+measured rule, not a taste one: light text over the street photography
+measured 3.1:1 even through a 70% scrim, and the only scrim heavy enough to
+fix it ruins the picture. Where a photograph sits *behind* an interface — the
+construction band — its opacity is capped by measuring the composite against
+the image's brightest pixels, not by eye. That is why the backdrop there is
+at 14% and not 22%.
+
+## 8. Product imagery
 
 There are no photographs. `src/components/visuals/shoeGeometry.ts` generates
 every shoe from one lasting line and a thickness curve, normalised against

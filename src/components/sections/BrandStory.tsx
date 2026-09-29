@@ -5,6 +5,8 @@ import { products } from '@/data/products'
 import { Reveal } from '@/components/primitives/Reveal'
 import { Eyebrow } from '@/components/primitives/Bits'
 import { ShoeVisual } from '@/components/visuals/ShoeVisual'
+import { Photo } from '@/components/visuals/Photo'
+import { PHOTOS } from '@/data/photography'
 
 /**
  * Two products at scale, one offset against the other.
@@ -13,26 +15,31 @@ import { ShoeVisual } from '@/components/visuals/ShoeVisual'
  * about 230px wide — thumbnails, not a composition — and left a dead band
  * underneath. Two is fewer products and a much better picture.
  */
+/**
+ * The product beside the thing it is for.
+ *
+ * Two plates: one drawn product, one photograph of people actually moving.
+ * The section headline is "Built for the way life actually moves" — showing
+ * two more product shots next to that line says nothing.
+ */
 const COMPOSITION = [
   {
+    kind: 'product' as const,
     slug: 'aura-form',
-    view: 'hero',
-    tone: 'stone',
+    view: 'hero' as const,
+    tone: 'stone' as const,
     aspect: 'aspect-[4/5]',
     offset: '',
-    /* The shoe is a 2.3:1 shape in a 0.8:1 plate, so it is scaled up and
-       cropped by the frame rather than floating in the middle of it. */
     scale: 'scale-[1.32]',
+    caption: 'AURA FORM',
   },
   {
-    slug: 'aura-shift',
-    view: 'top',
-    tone: 'dark',
+    kind: 'photo' as const,
     aspect: 'aspect-[3/4]',
     offset: 'sm:mt-16',
-    scale: 'scale-[1.2]',
+    caption: 'Weekday, 08:12',
   },
-] as const
+]
 
 export function BrandStory() {
   return (
@@ -67,19 +74,29 @@ export function BrandStory() {
             {/* Side by side on a phone would be two 167px plates. Stack them. */}
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:gap-6">
               {COMPOSITION.map((cell, i) => {
+                if (cell.kind === 'photo') {
+                  return (
+                    <Reveal key="photo" delay={i * 0.08} className={cn(cell.offset)}>
+                      <figure>
+                        <Photo
+                          photo={PHOTOS.motionFigures}
+                          className={cn('overflow-hidden', cell.aspect)}
+                        />
+                        <figcaption className="t-label mt-3 text-[color:var(--color-muted)]">
+                          {cell.caption}
+                        </figcaption>
+                      </figure>
+                    </Reveal>
+                  )
+                }
+
                 const product = products.find((p) => p.slug === cell.slug)
                 if (!product) return null
                 return (
                   <Reveal key={cell.slug} delay={i * 0.08} className={cn(cell.offset)}>
                     <figure>
                       <div
-                        className={cn(
-                          'relative overflow-hidden',
-                          cell.aspect,
-                          cell.tone === 'dark'
-                            ? 'image-bed-deep grain grain-dark'
-                            : 'image-bed grain',
-                        )}
+                        className={cn('image-bed grain relative overflow-hidden', cell.aspect)}
                       >
                         <div className="absolute inset-0 flex items-center justify-center">
                           <ShoeVisual
@@ -92,7 +109,7 @@ export function BrandStory() {
                         </div>
                       </div>
                       <figcaption className="t-label mt-3 text-[color:var(--color-muted)]">
-                        AURA {product.name}
+                        {cell.caption}
                       </figcaption>
                     </figure>
                   </Reveal>

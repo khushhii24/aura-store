@@ -4,6 +4,8 @@ import { flagship } from '@/data/products'
 import { Reveal } from '@/components/primitives/Reveal'
 import { Eyebrow } from '@/components/primitives/Bits'
 import { ShoeVisual } from '@/components/visuals/ShoeVisual'
+import { Photo } from '@/components/visuals/Photo'
+import { PHOTOS, type PhotoKey } from '@/data/photography'
 import type { ShoeView } from '@/components/visuals/shoeGeometry'
 
 /**
@@ -11,10 +13,20 @@ import type { ShoeView } from '@/components/visuals/shoeGeometry'
  * table. Each one gets a different crop of the same shoe, so the section
  * reads as a photo essay of one product instead of five stock icons.
  */
-const CROPS: { view: ShoeView; flip?: boolean; tone: 'stone' | 'dark' }[] = [
+/**
+ * Five crops of the same shoe, with one real photograph among them. The
+ * material claim is the one that earns a photograph — you cannot draw the
+ * way a knit actually looks up close.
+ */
+const CROPS: {
+  view?: ShoeView
+  photo?: PhotoKey
+  flip?: boolean
+  tone: 'stone' | 'dark'
+}[] = [
   { view: 'heel', tone: 'stone' },
   { view: 'hero', tone: 'dark' },
-  { view: 'top', tone: 'stone' },
+  { photo: 'knitBone', tone: 'stone' },
   { view: 'toe', flip: true, tone: 'stone' },
   { view: 'sole', tone: 'dark' },
 ]
@@ -58,15 +70,19 @@ export function ProductStory() {
                         crop.tone === 'dark' ? 'image-bed-deep grain grain-dark' : 'image-bed grain',
                       )}
                     >
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <ShoeVisual
-                          parts={colorway.parts}
-                          shape={flagship.shape}
-                          view={crop.view}
-                          flip={crop.flip}
-                          label={null}
-                        />
-                      </div>
+                      {crop.photo ? (
+                        <Photo photo={PHOTOS[crop.photo]} className="absolute inset-0" />
+                      ) : (
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <ShoeVisual
+                            parts={colorway.parts}
+                            shape={flagship.shape}
+                            view={crop.view}
+                            flip={crop.flip}
+                            label={null}
+                          />
+                        </div>
+                      )}
                       <p
                         className={cn(
                           't-label absolute bottom-5 left-5',

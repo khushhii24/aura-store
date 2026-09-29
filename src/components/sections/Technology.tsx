@@ -6,6 +6,7 @@ import { flagship } from '@/data/products'
 import { ExplodedShoe } from '@/components/visuals/ExplodedShoe'
 import { Eyebrow } from '@/components/primitives/Bits'
 import { useIsDesktop } from '@/lib/hooks'
+import { PHOTOS } from '@/data/photography'
 import { DURATION, EASE } from '@/lib/motion'
 
 const clamp01 = (n: number) => Math.min(1, Math.max(0, n))
@@ -115,9 +116,21 @@ export function Technology() {
   return (
     <section
       id="technology"
-      className="on-dark bg-[color:var(--color-ink-deep)]"
+      className="on-dark relative isolate bg-[color:var(--color-ink-deep)]"
       aria-labelledby="tech-heading"
     >
+      {/* A real material under the band, barely there — enough to stop it
+          being a flat black rectangle. Opacity is capped at 0.14 because the
+          measured contrast of on-dark-muted over the texture's brightest
+          pixels was 4.15:1 at 0.22. */}
+      <img
+        src={PHOTOS.knitCharcoal.src}
+        alt=""
+        aria-hidden="true"
+        loading="lazy"
+        decoding="async"
+        className="photo-grade pointer-events-none absolute inset-0 -z-10 h-full w-full object-cover opacity-[0.14]"
+      />
       {staticMode ? (
         <div className="container-aura section-y">
           {heading}

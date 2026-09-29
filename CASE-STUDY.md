@@ -68,35 +68,53 @@ three failures during the build, including an input border at 1.67:1 that
 looked fine and was not — which is why the system now separates decorative
 hairlines from interactive ones.
 
+Photography needed the same treatment. Where an image sits behind an
+interface, I sampled the image's own brightest pixels and computed the
+composite rather than judging by eye: the construction band's backdrop
+measured 4.15:1 for its smallest label at 22% opacity, so it is capped at
+14%. Where text would have sat *on* a photograph, the measurement said 3.1:1
+even through a 70% scrim — so the captions moved underneath instead.
+
 ---
 
-## The product system
+## Imagery: a deliberate split
 
-**Every shoe on the site is drawn, not photographed.**
+The site mixes two media, and the reason is worth stating.
 
-One lasting line and one sole-thickness curve generate all eight models,
-normalised against real lateral proportions — collar at 0.355 of shoe length
-above the ground, heel stack at 0.120, toe box at 0.100. Four parameters
-separate the range: stack height, collar height, overlay style and lacing.
+**Photography carries the materials and the atmosphere.** Knit, canvas,
+leather and grain macros sit beside each material on the about page; street
+scenes carry the brand section, where the headline is "built for the way life
+actually moves" and two more product shots would have said nothing.
 
-That decision paid for itself three times:
+**The products are drawn.** Not as a stylistic preference — I went looking for
+product photography and found that every commercially licensed studio
+photograph of a sneaker is an identifiable Nike, Adidas, Jordan or Vans. The
+stock alt text actively hides it: one labelled "a pair of white shoes" is a
+pair of Air Force 1s. Putting one of those under "AURA ONE — $180" would
+present another company's product as this brand's, which is a trademark
+problem and an obvious tell on a portfolio piece.
 
-- **Colourways repaint the product in real time.** Every part colour — upper,
-  overlay, collar, laces, eyelets, midsole, outsole, accent — comes from the
-  selected swatch. Choosing a colour changes the shoe you are looking at
-  instead of loading another image.
+So the products are generated from one lasting line and one sole-thickness
+curve, normalised against real lateral proportions — collar at 0.355 of shoe
+length above the ground, heel stack at 0.120, toe box at 0.100. The eight
+models differ at the silhouette level: sole architecture (wedge, rocker,
+cupsole, slab, lugged), toe shape, toe spring and outsole construction
+(rubber pods, full coverage, a gum cupsole wrapping the sidewall, trail
+lugs). Surfaces are shaded with form gradients, contact occlusion, specular
+highlights and per-material texture.
+
+That decision pays for itself three times:
+
+- **Colourways repaint the product in real time.** Every part colour comes
+  from the selected swatch, so choosing a colour changes the shoe you are
+  looking at instead of loading another image.
 - **The construction section takes the shoe apart.** The same geometry cuts
-  into four layers that separate as you scroll. No photograph can do that.
+  into four layers that separate as you scroll. No photograph does that.
 - **The catalogue looks like one studio made it.** Eight models sharing one
-  silhouette engine have a family resemblance that eight stock photos never
-  would.
+  silhouette engine have a family resemblance eight stock photos never would.
 
-Six views — lateral, top, outsole, heel, midfoot, toe — are genuine geometry
-or genuine crops, not one picture shown six times. Each product sits on a
-graded bed with a contact shadow and a film-grain pass, because a drawn
-product on a flat field reads as clip art.
-
----
+One shared grade — a desaturation and a warm tint — puts photographs from ten
+different photographers onto the same palette as the drawn products.
 
 ## Key UX features
 
@@ -174,8 +192,9 @@ complete shopping experience: filterable catalogue, six-view product gallery,
 live colourway selection, search overlay, persistent bag and a prototype
 checkout.
 
-Every product image is generated from a parametric SVG system rather than
-photographed, so selecting a colourway repaints the shoe in real time and the
-construction section can separate it into its four layers. React, TypeScript,
+Photography carries the materials and the atmosphere; the products are
+generated from a parametric SVG system, so selecting a colourway repaints the
+shoe in real time and the construction section can separate it into its four
+layers. React, TypeScript,
 Vite, Tailwind and Motion, with measured WCAG contrast, focus-managed dialogs
 and mobile layouts designed rather than stacked.

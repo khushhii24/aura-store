@@ -59,6 +59,8 @@ from anywhere.
 
 ```
 src/
+  assets/
+    photography/   bundled WebP, see CREDITS.md
   components/
     chrome/        Navbar, MobileMenu, SearchOverlay, BagDrawer, Footer
     primitives/    Button, Overlay (Drawer + Modal), Accordion, Reveal, Bits
@@ -66,8 +68,10 @@ src/
                    ProductInfo, SizeGuide, WishlistButton
     sections/      Hero, FeaturedProduct, Collection, ProductStory,
                    Technology, BrandStory, SocialProof, FinalCTA
-    visuals/       shoeGeometry, ShoeVisual, ExplodedShoe, ShoeScene, Wordmark
-  data/            products, colorways, reviews, catalog, content, types
+    visuals/       shoeGeometry, shoeShading, ShoeVisual, ExplodedShoe,
+                   ShoeScene, Photo, Wordmark
+  data/            products, colorways, reviews, catalog, content,
+                   photography, types
   lib/             cn, color, format, hooks, motion
   pages/           Home, Shop, ProductDetail, About, Wishlist, Checkout, NotFound
   store/           shop.tsx — bag, wishlist, recently viewed, overlay state
@@ -80,19 +84,35 @@ one folder.
 
 ---
 
-## Product imagery
+## Imagery
 
-Every shoe on the site is generated from
-`src/components/visuals/shoeGeometry.ts` rather than photographed. One lasting
-line and one thickness curve produce all eight models; four parameters
-(`stack`, `collar`, `overlay`, `lacing`) separate a flat court shoe from a
-40mm-stack road runner.
+The site mixes two media, deliberately.
 
-This is the reason selecting a colourway repaints the product in real time,
-the reason the construction section can take the shoe apart into four layers,
-and the reason the catalogue looks like it came out of one studio.
+**Photography** carries the materials and the atmosphere: knit, canvas,
+leather and grain macros on the materials page, and street scenes in the
+brand section. All from Unsplash under the Unsplash License, re-encoded as
+WebP and bundled into `src/assets/photography/` rather than hot-linked. See
+`CREDITS.md`.
 
-See `DESIGN-SYSTEM.md` for the proportions and the rest of the tokens.
+**The products are drawn**, from
+`src/components/visuals/shoeGeometry.ts`. One lasting line and one thickness
+curve produce all eight models; sole architecture, toe shape, toe spring and
+outsole construction separate a vulcanised court shoe from a 40mm-stack road
+runner.
+
+That split is not a stylistic preference. Every commercially licensed studio
+photograph of a sneaker available is an identifiable Nike, Adidas, Jordan or
+Vans — the stock alt text often hides it, and one labelled "a pair of white
+shoes" turned out to be Air Force 1s. Putting one of those under
+"AURA ONE — $180" would present another company's product as this brand's.
+Textures and street scenes carry no such claim.
+
+Drawing the products also buys three things a photograph cannot: colourways
+repaint the shoe live, the construction section takes it apart into four
+layers, and eight models share a family resemblance.
+
+See `DESIGN-SYSTEM.md` for the proportions, the photo grade and the rest of
+the tokens.
 
 ---
 
@@ -124,7 +144,9 @@ is nothing to type real details into.
 - Selection controls use real radio/checkbox semantics or `aria-pressed`;
   sold-out sizes are `disabled` and announced.
 - Contrast is measured, not assumed — `npm run check:contrast` covers 39
-  pairs including borders (3:1) and text (4.5:1).
+  token pairs including borders (3:1) and text (4.5:1). Text over photography
+  is measured separately against the image's own brightest pixels, which is
+  how the construction band's backdrop ended up capped at 14% opacity.
 - `prefers-reduced-motion` removes all travel, the pinned scroll sequence and
   smooth scrolling while keeping every state reachable.
 - Verified at 390 / 768 / 1024 / 1280 / 1440 with no horizontal overflow.

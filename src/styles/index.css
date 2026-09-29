@@ -592,6 +592,13 @@
       stop-color var(--duration-image) var(--ease-exit);
   }
 
+  /* One grade across every photograph. Ten photographers' images pull in ten
+     directions otherwise; a shared desaturation and warm tint puts them all
+     on the same palette as the rest of the site. */
+  .photo-grade {
+    filter: saturate(0.72) sepia(0.1) contrast(1.04);
+  }
+
   .hairline-grid {
     background-image:
       linear-gradient(to right, var(--color-line) 1px, transparent 1px),

@@ -11,30 +11,37 @@ import { press } from '@/data/reviews'
 import { Reveal } from '@/components/primitives/Reveal'
 import { Eyebrow } from '@/components/primitives/Bits'
 import { ShoeVisual } from '@/components/visuals/ShoeVisual'
+import { Photo } from '@/components/visuals/Photo'
+import { PHOTOS, type PhotoKey } from '@/data/photography'
 
-const MATERIALS = [
+const MATERIALS: { name: string; detail: string; share: string; photo: PhotoKey }[] = [
   {
     name: 'Nitrogen-infused AURAFOAM',
     detail:
       'Gas injected into the foam during moulding, creating closed cells that stay springy for roughly twice as long as standard EVA.',
     share: '100% of models',
+    photo: 'grainBeige',
   },
   {
     name: 'Recycled engineered knit',
     detail:
       '62% post-consumer polyester, knitted in one piece so there is no offcut waste at the cutting table.',
     share: '5 of 8 models',
+    photo: 'knitBone',
   },
   {
     name: 'Vegetable-tanned leather',
     detail:
       'Tanned in Portugal without chromium, from a tannery audited by the Leather Working Group.',
     share: 'FORM only',
+    photo: 'leatherTan',
   },
   {
-    name: 'Reclaimed rubber',
-    detail: '30% reclaimed content in every outsole, placed only where wear data called for it.',
-    share: 'All outsoles',
+    name: 'Organic cotton canvas',
+    detail:
+      'Woven for the LOW and vulcanised to the sole rather than glued, so the bond outlasts the upper.',
+    share: 'LOW only',
+    photo: 'wovenCanvas',
   },
 ]
 
@@ -131,6 +138,19 @@ export function About() {
         </div>
       </section>
 
+      {/* A break between the story and the pillars — the site has had a lot
+          of product by this point and needs air with something real in it. */}
+      {/* The caption sits under the image, not over it. street-legs has bright
+          sunlit pavement, and light text on it measured 3.1:1 even through a
+          70% scrim — only a scrim heavy enough to ruin the photograph fixes
+          that, so the caption moves instead. */}
+      <figure>
+        <Photo photo={PHOTOS.streetLegs} className="h-[42vh] min-h-[18rem] w-full md:h-[56vh]" />
+        <figcaption className="container-aura t-label mt-4 text-[color:var(--color-muted)]">
+          Eleven thousand steps you did not plan on
+        </figcaption>
+      </figure>
+
       {/* ------------------------------------------------------- pillars */}
       <section className="section-y-tight bg-[color:var(--color-stone)]">
         <div className="container-aura">
@@ -192,9 +212,15 @@ export function About() {
           <dl className="mt-12 space-y-px">
             {MATERIALS.map((m, i) => (
               <Reveal key={m.name} delay={Math.min(i, 3) * 0.05}>
-                <div className="grid gap-3 border-t border-[color:var(--color-line)] py-7 md:grid-cols-12 md:gap-8">
-                  <dt className="t-product md:col-span-4">{m.name}</dt>
-                  <dd className="t-body md:col-span-6">{m.detail}</dd>
+                <div className="grid items-start gap-4 border-t border-[color:var(--color-line)] py-7 md:grid-cols-12 md:gap-8">
+                  {/* Decorative: the material is named and described alongside. */}
+                  <Photo
+                    photo={PHOTOS[m.photo]}
+                    alt=""
+                    className="aspect-[4/3] w-32 md:col-span-2 md:w-full"
+                  />
+                  <dt className="t-product md:col-span-3">{m.name}</dt>
+                  <dd className="t-body md:col-span-5">{m.detail}</dd>
                   <dd className="t-label text-[color:var(--color-muted)] md:col-span-2 md:text-right">
                     {m.share}
                   </dd>
