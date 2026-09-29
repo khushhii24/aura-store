@@ -158,6 +158,10 @@ export const products: Product[] = [
         name: 'Single-line last',
         detail: 'One unbroken line from heel to toe — the detail that makes it read as a shoe.',
       },
+      {
+        name: 'Stitched cupsole',
+        detail: 'The upper sits down inside a moulded sole wall and is stitched around the rim. Heavier than a glued sole, and it keeps that line straight for years.',
+      },
     ],
     shape: { stack: 0.92, collar: -4, soleStyle: 'cupsole', toe: 'round', outsole: 'gum', overlay: 'none', lacing: 'laced', material: 'leather', perforated: false, heelTab: false },
   },
